@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "carry-middle-text",
+  name: "carry-text",
   props: ["carry", "carryState"]
 };
 </script>

@@ -1,9 +1,9 @@
 <template>
-  <div v-if="sendAus">
-    <div class="row justify-content-md-center" :class="sendAusState">
+  <div v-if="sendThai">
+    <div class="row justify-content-md-center" :class="sendThaiState">
       <h3 class="content-text text-orange mt-5 mb-5">
         Send
-        <span class="text-white">></span> Australia
+        <span class="text-white">></span> Thailand
         <span class="text-white">></span> Where to?
       </h3>
     </div>
@@ -12,8 +12,8 @@
 
 <script>
 export default {
-  name: "send-aus-middle-text",
-  props: ["sendAus", "sendAusState"]
+  name: "send-thai-text",
+  props: ["sendThai", "sendThaiState"]
 };
 </script>
 

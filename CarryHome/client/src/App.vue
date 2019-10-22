@@ -1,227 +1,139 @@
 <template>
   <div id="app">
     <div class="filter position-absolute pb-5">
-      <div class="container-fluid">
-        <div class="row justify-content-end mt-3 mr-3">
-          <p class="plain-text-25 text-white position-absolute">Log In</p>
-        </div>
-      </div>
+      <router-view
+        :home="home"
+        :homeState="homeState"
+        :homeContent="homeContent"
+        :homeContentState="homeContentState"
+        :carry="carry"
+        :carryContent="carryContent"
+        :send="send"
+        :sendContent="sendContent"
+        @homeToCarry="homeToCarry"
+        @homeToSend="homeToSend"
+      ></router-view>
+
       <div class="container">
-        <div class="row justify-content-md-center">
-          <h1 class="logo-font text-white mt-3 mb-5">CH</h1>
-        </div>
         <!--Home Text-->
-        <home-middle-text :home="home" :homeState="homeState"></home-middle-text>
+        <home-text :home="home" :homeState="homeState"></home-text>
         <!--Home Text-->
 
         <!--Carry Text-->
-        <carry-middle-text :carry="carry" :carryState="carryState"></carry-middle-text>
+        <carry-text :carry="carry" :carryState="carryState"></carry-text>
         <!--Carry Text-->
 
         <!--Carry Aus Text-->
-        <carry-aus-middle-text :carryAus="carryAus" :carryAusState="carryAusState"></carry-aus-middle-text>
+        <carry-aus-text :carryAus="carryAus" :carryAusState="carryAusState"></carry-aus-text>
         <!--Carry Aus Text-->
 
         <!--Carry Thai Text-->
-        <carry-thai-middle-text :carryThai="carryThai" :carruyThaiState="carryThaiState"></carry-thai-middle-text>
+        <carry-thai-text :carryThai="carryThai" :carryThaiState="carryThaiState"></carry-thai-text>
         <!--Carry Thai Text-->
 
         <!--Send Text-->
-        <send-middle-text :send="send" :sendState="sendState"></send-middle-text>
+        <send-text :send="send" :sendState="sendState"></send-text>
         <!--Send Text-->
 
         <!--Send Aus Text-->
-        <send-aus-middle-text :sendAus="sendAus" :sendAusState="sendAusState"></send-aus-middle-text>
+        <send-aus-text :sendAus="sendAus" :sendAusState="sendAusState"></send-aus-text>
         <!--Send Aus Text-->
 
         <!--Send Thai Text-->
-        <send-thai-middle-text :sendThai="sendThai" :sendThaiState="sendThaiState"></send-thai-middle-text>
-        <!--Send Aus Text-->
+        <send-thai-text :sendThai="sendThai" :sendThaiState="sendThaiState"></send-thai-text>
+        <!--Send Thai Text-->
 
         <hr class="bg-light mb-3 w-50" />
+
         <!--Home Content-->
-        <div v-if="homeContent">
-          <div class="row" :class="homeContentState">
-            <div class="col-sm-6 mt-5">
-              <div class="row justify-content-md-center">
-                <h6 class="plain-text-25 text-white">I'll</h6>
-              </div>
-              <div class="row justify-content-md-center">
-                <a
-                  href="#"
-                  @click="home = !home, carry = !carry, homeContent = !homeContent, carryContent = !carryContent"
-                >
-                  <h1 class="button-text text-orange">Carry</h1>
-                </a>
-              </div>
-              <div class="row justify-content-md-center">
-                <h6 class="plain-text-25 text-white">Things for you</h6>
-              </div>
-            </div>
-            <div class="col-sm-6 mt-5">
-              <div class="row justify-content-md-center">
-                <h6 class="plain-text-25 text-white">Wanna</h6>
-              </div>
-              <div class="row justify-content-md-center">
-                <a
-                  href="#"
-                  @click="home = !home, send = !send, homeContent = !homeContent, sendContent = !sendContent"
-                >
-                  <h1 class="button-text text-orange">Send</h1>
-                </a>
-              </div>
-              <div class="row justify-content-md-center">
-                <h6 class="plain-text-25 text-white">Things to another Country</h6>
-              </div>
-            </div>
-          </div>
-        </div>
+        <home-content
+          :home="home"
+          :homeContent="homeContent"
+          :homeContentState="homeContentState"
+          :carry="carry"
+          :carryContent="carryContent"
+          :send="send"
+          :sendContent="sendContent"
+          @homeToCarry="homeToCarry"
+          @homeToSend="homeToSend"
+        ></home-content>
         <!--Home Content-->
 
         <!--Carry Content-->
-        <div v-if="carryContent">
-          <div class="row" :class="carryContentState">
-            <div class="col-sm-6 mt-5">
-              <div class="row justify-content-md-center">
-                <a
-                  href="#"
-                  @click="carry = !carry, carryContent = !carryContent, carryAus = !carryAus, carryAusContent = !carryAusContent"
-                >
-                  <h1 class="button-text text-orange">Australia</h1>
-                </a>
-              </div>
-              <div class="row justify-content-md-center">
-                <h6 class="plain-text-25 text-white">To Thailand</h6>
-              </div>
-            </div>
-            <div class="col-sm-6 mt-5">
-              <div class="row justify-content-md-center">
-                <a
-                  href="#"
-                  @click="carry = !carry, carryContent = !carryContent, carryThai = !carryThai, carryThaiContent = !carryThaiContent"
-                >
-                  <h1 class="button-text text-orange">Thailand</h1>
-                </a>
-              </div>
-              <div class="row justify-content-md-center">
-                <h6 class="plain-text-25 text-white">To Australia</h6>
-              </div>
-            </div>
-          </div>
-        </div>
+        <carry-content
+          :carry="carry"
+          :carryContent="carryContent"
+          :carryContentState="carryContentState"
+          :carryAus="carryAus"
+          :carryAusContent="carryAusContent"
+          :carryThai="carryThai"
+          :carryThaiContent="carryThaiContent"
+          @carryToCarryAus="carryToCarryAus"
+          @carryToCarryThai="carryToCarryThai"
+        ></carry-content>
         <!--Carry Content-->
 
-        <!--CarryAus Content-->
-        <div v-if="carryAusContent">
-          <div class="row" :class="carryAusContentState">
-            <div class="col mt-3">
-              <div class="row justify-content-md-center mb-3">
-                <div>
-                  <label for="carryAusState" class="text-orange d-block">State</label>
-                  <select
-                    id="carryAusState"
-                    type="text"
-                    class="form-control block"
-                    @change="showButton($event)"
-                  >
-                    <option value selected>Choose</option>
-                    <option v-for="state in states" :value="state.name" :key="state.name">
-                      {{
-                      state.name
-                      }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="row mb-5">
-                <div class="col-sm-6">
-                  <div class="row justify-content-md-end mr-1">
-                    <div>
-                      <label for="carryAusFrom" class="text-orange d-block">From</label>
-                      <select
-                        id="carryAusFrom"
-                        type="text"
-                        class="form-control block"
-                        @change="showButton($event)"
-                      >
-                        <option value selected>Choose</option>
-                        <option v-for="state in states" :value="state.name" :key="state.name">
-                          {{
-                          state.name
-                          }}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="row justify-content-md-start ml-1">
-                    <div>
-                      <label for="carryAusTo" class="text-orange d-block">To</label>
-                      <select
-                        id="carryAusTo"
-                        type="text"
-                        class="form-control block"
-                        @change="showButton($event)"
-                      >
-                        <option value selected>Choose</option>
-                        <option v-for="state in states" :value="state.name" :key="state.name">
-                          {{
-                          state.name
-                          }}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row justify-content-md-center">
-                <button type="button" class="btn btn-orange px-5 py-2" v-if="location == true">Next</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!--Carry Aus Content-->
+        <carry-aus-content
+          :states="states"
+          :carryAusContent="carryAusContent"
+          :carryAusContentState="carryAusContentState"
+          :location="location"
+          $event="$event"
+          :carryAusThaiNext="carryAusThaiNext"
+          @carryAusThaiButton="carryAusThaiButton"
+        ></carry-aus-content>
+        <!--Carry Aus Content-->
 
-        <!--CarryAus Content-->
-
-        <!--CarryThai Content-->
-        <div v-if="carryThaiContent">
-          <div class="row" :class="carryThaiContentState">fnhm,lj;,</div>
-        </div>
-        <!--CarryThai Content-->
+        <!--Carry Thai Content-->
+        <carry-thai-content
+          :states="states"
+          :carryThaiContent="carryThaiContent"
+          :carryThaiContentState="carryThaiContentState"
+          :location="location"
+          $event="$event"
+          :carryThaiAusNext="carryThaiAusNext"
+          @carryThaiAusButton="carryThaiAusButton"
+        ></carry-thai-content>
+        <!--Carry Thai Content-->
 
         <!--Send Content-->
-        <div v-if="sendContent">
-          <div class="row" :class="sendContentState">
-            <div class="col-sm-6 mt-5">
-              <div class="row justify-content-md-center">
-                <a
-                  href="#"
-                  @click="send = !send, sendContent = !sendContent, sendAus = !sendAus, sendAusContent = !sendAusContent"
-                >
-                  <h1 class="button-text text-orange">Australia</h1>
-                </a>
-              </div>
-              <div class="row justify-content-md-center">
-                <h6 class="plain-text-25 text-white">To Thailand</h6>
-              </div>
-            </div>
-            <div class="col-sm-6 mt-5">
-              <div class="row justify-content-md-center">
-                <a
-                  href="#"
-                  @click="send = !send, sendContent = !sendContent, sendThai = !sendThai, sendThaiContent = !sendThaiContent"
-                >
-                  <h1 class="button-text text-orange">Thailand</h1>
-                </a>
-              </div>
-              <div class="row justify-content-md-center">
-                <h6 class="plain-text-25 text-white">To Australia</h6>
-              </div>
-            </div>
-          </div>
-        </div>
+        <send-content
+          :send="send"
+          :sendContent="sendContent"
+          :sendContentState="sendContentState"
+          :sendAus="sendAus"
+          :sendAusContent="sendAusContent"
+          :sendThai="sendThai"
+          :sendThaiContent="sendThaiContent"
+          @sendToSendAus="sendToSendAus"
+          @sendToSendThai="sendToSendThai"
+        ></send-content>
         <!--Send Content-->
+
+        <!--Send Aus Content-->
+        <send-aus-content
+          :states="states"
+          :sendAusContent="sendAusContent"
+          :sendAusContentState="sendAusContentState"
+          :location="location"
+          $event="$event"
+          :sendAusThaiNext="sendAusThaiNext"
+          @sendAusThaiButton="sendAusThaiButton"
+        ></send-aus-content>
+        <!--Send Aus Content-->
+
+        <!--Send Thai Content-->
+        <send-thai-content
+          :states="states"
+          :sendThaiContent="sendThaiContent"
+          :sendThaiContentState="sendThaiContentState"
+          :location="location"
+          $event="$event"
+          :sendThaiAusNext="sendThaiAusNext"
+          @sendThaiAusButton="sendThaiAusButton"
+        ></send-thai-content>
+        <!--Send Thai Content-->
       </div>
     </div>
   </div>
@@ -230,20 +142,44 @@
 <script>
 //Import Fontawesome Component
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-//Import HomeMiddleText Component
-import HomeMiddleText from "./components/HomeMiddleText.vue";
-//Import CarryMiddleText Component
-import CarryMiddleText from "./components/CarryMiddleText.vue";
-//Import CarryAusMiddleText Component
-import CarryAusMiddleText from "./components/CarryAusMiddleText.vue";
-//Import CarryThaiMiddleText Component
-import CarryThaiMiddleText from "./components/CarryThaiMiddleText.vue";
-//Import SendMiddleText Component
-import SendMiddleText from "./components/SendMiddleText.vue";
-//Import SendAusMiddleText Component
-import SendAusMiddleText from "./components/SendAusMiddleText.vue";
-//Import SendThaiMiddleText Component
-import SendThaiMiddleText from "./components/SendThaiMiddleText.vue";
+
+//Import Top Component
+import Top from "./components/Top.vue";
+
+//Import HomeText Component
+import HomeText from "./components/Home/HomeText.vue";
+//Import HomeContent Component
+import HomeContent from "./components/Home/HomeContent.vue";
+
+//Import CarryText Component
+import CarryText from "./components/Carry/CarryText.vue";
+//Import CarryContent Component
+import CarryContent from "./components/Carry/CarryContent.vue";
+
+//Import CarryAusText Component
+import CarryAusText from "./components/Carry/CarryAus/CarryAusText.vue";
+//Import CarryAusContent Component
+import CarryAusContent from "./components/Carry/CarryAus/CarryAusContent.vue";
+
+//Import CarryThaiText Component
+import CarryThaiText from "./components/Carry/CarryThai/CarryThaiText.vue";
+//Import CarryThaiContent Component
+import CarryThaiContent from "./components/Carry/CarryThai/CarryThaiContent.vue";
+
+//Import SendText Component
+import SendText from "./components/Send/SendText.vue";
+//Import SendContent Component
+import SendContent from "./components/Send/SendContent.vue";
+
+//Import SendAusText Component
+import SendAusText from "./components/Send/SendAus/SendAusText.vue";
+//Import SendAusContent Component
+import SendAusContent from "./components/Send/SendAus/SendAusContent.vue";
+
+//Import SendThaiText Component
+import SendThaiText from "./components/Send/SendThai/SendThaiText.vue";
+//Import SendThaiContent Component
+import SendThaiContent from "./components/Send/SendThai/SendThaiContent.vue";
 
 export default {
   name: "app",
@@ -297,15 +233,52 @@ export default {
   },
   components: {
     FontAwesomeIcon,
-    HomeMiddleText,
-    CarryMiddleText,
-    CarryAusMiddleText,
-    CarryThaiMiddleText,
-    SendMiddleText,
-    SendAusMiddleText,
-    SendThaiMiddleText
+    Top,
+    HomeText,
+    CarryText,
+    CarryAusText,
+    CarryThaiText,
+    SendText,
+    SendAusText,
+    SendThaiText,
+    HomeContent,
+    CarryContent,
+    SendContent,
+    CarryAusContent,
+    CarryThaiContent,
+    SendAusContent,
+    SendThaiContent
   },
-  computed: {},
+  computed: {
+    carryAusThaiNext: function() {
+      if (this.location) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    carryThaiAusNext: function() {
+      if (this.location) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    sendAusThaiNext: function() {
+      if (this.location) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    sendThaiAusNext: function() {
+      if (this.location) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
   methods: {
     homeState: function() {
       return this.home ? "d-flex" : "d-none";
@@ -356,11 +329,88 @@ export default {
       return this.sendThaiContent ? "d-flex" : "d-none";
     },
 
-    showButton: function(e) {
-      var state = document.getElementById("carryAusState").value;
-      var from = document.getElementById("carryAusFrom").value;
-      var to = document.getElementById("carryAusTo").value;
-      if (state == "" || from == "" || to == "") {
+    homeToCarry: function() {
+      return (
+        (this.home = !this.home),
+        (this.homeContent = !this.homeContent),
+        (this.carry = !this.carry),
+        (this.carryContent = !this.carryContent)
+      );
+    },
+    homeToSend: function() {
+      return (
+        (this.home = !this.home),
+        ((this.homeContent = !this.homeContent), (this.send = !this.send)),
+        (this.sendContent = !this.sendContent)
+      );
+    },
+    carryToCarryAus: function() {
+      return (
+        (this.carry = !this.carry),
+        (this.carryContent = !this.carryContent),
+        (this.carryAus = !this.carryAus),
+        (this.carryAusContent = !this.carryAusContent)
+      );
+    },
+    carryToCarryThai: function() {
+      return (
+        (this.carry = !this.carry),
+        (this.carryContent = !this.carryContent),
+        (this.carryThai = !this.carryThai),
+        (this.carryThaiContent = !this.carryThaiContent)
+      );
+    },
+    sendToSendAus: function() {
+      return (
+        (this.send = !this.send),
+        (this.sendContent = !this.sendContent),
+        (this.sendAus = !this.sendAus),
+        (this.sendAusContent = !this.sendAusContent)
+      );
+    },
+    sendToSendThai: function() {
+      return (
+        (this.send = !this.send),
+        (this.sendContent = !this.sendContent),
+        (this.sendThai = !this.sendThai),
+        (this.sendThaiContent = !this.sendThaiContent)
+      );
+    },
+    carryAusThaiButton: function() {
+      var fromState = document.getElementById("carryAusState").value;
+      var fromCity = document.getElementById("carryAusCity").value;
+      var toThai = document.getElementById("carryAusTo").value;
+      if (fromState == "" || fromCity == "" || toThai == "") {
+        this.location = false;
+      } else {
+        this.location = true;
+      }
+    },
+    carryThaiAusButton: function() {
+      var fromThai = document.getElementById("carryThaiFrom").value;
+      var toState = document.getElementById("carryThaiState").value;
+      var toCity = document.getElementById("carryThaiCity").value;
+      if (fromThai == "" || toState == "" || toCity == "") {
+        this.location = false;
+      } else {
+        this.location = true;
+      }
+    },
+    sendAusThaiButton: function() {
+      var fromState = document.getElementById("sendAusState").value;
+      var fromCity = document.getElementById("sendAusCity").value;
+      var toThai = document.getElementById("sendAusTo").value;
+      if (fromState == "" || fromCity == "" || toThai == "") {
+        this.location = false;
+      } else {
+        this.location = true;
+      }
+    },
+    sendThaiAusButton: function() {
+      var fromState = document.getElementById("sendThaiState").value;
+      var fromCity = document.getElementById("sendThaiCity").value;
+      var toThai = document.getElementById("sendThaiTo").value;
+      if (fromState == "" || fromCity == "" || toThai == "") {
         this.location = false;
       } else {
         this.location = true;

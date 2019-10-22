@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "home-middle-text",
+  name: "home-text",
   props: ["home", "homeState"]
 };
 </script>

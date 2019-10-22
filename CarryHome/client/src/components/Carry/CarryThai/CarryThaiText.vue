@@ -1,9 +1,9 @@
 <template>
-  <div v-if="carryAus">
-    <div class="row justify-content-md-center" :class="carryAusState">
+  <div v-if="carryThai">
+    <div class="row justify-content-md-center" :class="carryThaiState">
       <h3 class="content-text text-orange mt-5 mb-5">
         Carry
-        <span class="text-white">></span> Australia
+        <span class="text-white">></span> Thailand
         <span class="text-white">></span> Choose Your Location
       </h3>
     </div>
@@ -12,8 +12,8 @@
 
 <script>
 export default {
-  name: "carry-aus-middle-text",
-  props: ["carryAus", "carryAusState"]
+  name: "carry-thai-text",
+  props: ["carryThai", "carryThaiState"]
 };
 </script>
 

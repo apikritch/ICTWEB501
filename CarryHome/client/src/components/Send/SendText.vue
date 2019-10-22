@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "send-middle-text",
+  name: "send-text",
   props: ["send", "sendState"]
 };
 </script>
