@@ -1,16 +1,17 @@
 <template>
   <div>
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-sm-center">
       <h3 class="content-text text-orange mt-5 mb-5">
-        Carry
-        <span class="text-white">></span> Thailand
+        <router-link href="#" to="/" class="text-link">Carry&nbsp;</router-link>
+        <span class="text-white">></span>
+        <router-link href="#" to="/carry" class="text-link">&nbsp;Thailand&nbsp;</router-link>
         <span class="text-white">></span> Choose Your Location
       </h3>
     </div>
     <hr class="bg-light mb-3 w-50" />
     <div class="row">
       <div class="col mt-3">
-        <div class="row justify-content-md-center mb-3">
+        <div class="row justify-content-sm-center mb-3">
           <div>
             <label for="carryThaiFrom" class="text-orange d-block">From</label>
             <select
@@ -30,7 +31,7 @@
         </div>
         <div class="row mb-5">
           <div class="col-sm-6">
-            <div class="row justify-content-md-end mr-1">
+            <div class="row justify-content-sm-end mr-1">
               <div>
                 <label for="carryThaiState" class="text-orange d-block">To State</label>
                 <select
@@ -50,7 +51,7 @@
             </div>
           </div>
           <div class="col-sm-6">
-            <div class="row justify-content-md-start ml-1">
+            <div class="row justify-content-sm-start ml-1">
               <div>
                 <label for="carryThaiCity" class="text-orange d-block">City</label>
                 <select
@@ -71,7 +72,7 @@
           </div>
         </div>
 
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-sm-center">
           <button type="button" class="btn btn-orange px-5 py-2" v-if="carryThaiAusNext">Next</button>
         </div>
       </div>

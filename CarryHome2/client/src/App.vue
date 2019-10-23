@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <div class="filter position-absolute pb-5">
-      <div class="container-fluid">
+    <div class="filter position-fixed w-100 h-100"></div>
+    <div class="container-fluid">
+      <div>
         <top></top>
-        <router-view></router-view>
+        <div class="container">
+          <router-view></router-view>
+        </div>
       </div>
     </div>
   </div>
