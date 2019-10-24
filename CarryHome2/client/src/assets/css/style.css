@@ -15,12 +15,12 @@
 }
 
 .plain-text-25 {
-  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 25px;
 }
 
 body {
+  font-family: "Roboto", sans-serif;
   background-image: url("../img/Jeff.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -89,4 +89,96 @@ a:hover {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
   background-color: white;
+}
+
+.user-img {
+  font-size: 5.5vw;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.price-per-kilo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.price-per-kilo .btn-orange {
+  margin-bottom: 0px;
+}
+
+.price-per-kilo.btn {
+  padding: 0.2rem 1rem;
+}
+
+.user-img-detail {
+  font-size: 10vw;
+}
+
+.description {
+  padding: 0.25rem 1rem;
+}
+
+.information-left {
+  padding-left: 0px;
+  padding-right: 2.5px;
+}
+
+.information-right {
+  padding-left: 2.5px;
+  padding-right: 0px;
+}
+
+.border-orange {
+  border: 1px solid #ff8315;
+}
+
+.col-sm-4 {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.popup-background {
+  background-color: rgba(255, 131, 21, 0.9);
+  z-index: 100;
+}
+
+.text-link-forgot {
+  color: #212529;
+}
+
+.text-link-forgot:hover {
+  color: #23272b;
+  text-decoration: transparent;
+}
+
+.close {
+  color: #fff;
+  text-shadow: none;
+  opacity: 1;
+  position: absolute;
+  right: 5px;
+  top: -9px;
+  font-size: 3rem;
+  font-weight: lighter;
+}
+
+.close:hover,
+.close:not(:disabled):not(.disabled):hover,
+.close-outline:hover {
+  color: #fff;
+  opacity: 1;
+}
+
+.close-outline:focus {
+  outline: none;
+}
+
+.user-img-login {
+  font-size: 3vw;
+}
+
+.popup-background p {
+  margin-bottom: 1px;
 }

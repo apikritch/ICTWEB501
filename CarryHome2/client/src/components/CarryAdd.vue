@@ -12,8 +12,8 @@
     </h4>
     <div class="row justify-content-sm-start align-items-end mb-3">
       <div class="col-sm-4">
-        <label for="from-country" class="text-orange d-block">Country</label>
-        <select id="from-country" type="text" class="form-control block">
+        <label for="add-from-country" class="text-orange d-block">Country</label>
+        <select id="add-from-country" type="text" class="form-control block">
           <option value selected>Choose</option>
           <option v-for="state in states" :value="state.name" :key="state.name">
             {{
@@ -23,8 +23,8 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <label for="from-state" class="text-orange d-block">State</label>
-        <select id="from-state" type="text" class="form-control block">
+        <label for="add-from-state" class="text-orange d-block">State</label>
+        <select id="add-from-state" type="text" class="form-control block">
           <option value selected>Choose</option>
           <option v-for="state in states" :value="state.name" :key="state.name">
             {{
@@ -34,8 +34,8 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <label for="from-city" class="text-orange d-block">City</label>
-        <select id="from-city" type="text" class="form-control block">
+        <label for="add-from-city" class="text-orange d-block">City</label>
+        <select id="add-from-city" type="text" class="form-control block">
           <option value selected>Choose</option>
           <option v-for="state in states" :value="state.name" :key="state.name">
             {{
@@ -53,8 +53,8 @@
         <h4 class="text-orange">
           <u>To</u>
         </h4>
-        <label for="to-country" class="text-orange d-block">Country</label>
-        <select id="to-country" type="text" class="form-control block">
+        <label for="add-to-country" class="text-orange d-block">Country</label>
+        <select id="add-to-country" type="text" class="form-control block">
           <option value selected>Choose</option>
           <option v-for="state in states" :value="state.name" :key="state.name">
             {{
@@ -64,8 +64,8 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <label for="to-city" class="text-orange d-block">City</label>
-        <select id="to-city" type="text" class="form-control block">
+        <label for="add-to-city" class="text-orange d-block">City</label>
+        <select id="add-to-city" type="text" class="form-control block">
           <option value selected>Choose</option>
           <option v-for="state in states" :value="state.name" :key="state.name">
             {{
@@ -83,7 +83,7 @@
         <h4 class="text-orange mb-3">
           <u>Depart</u>
         </h4>
-        <select id="depart" type="text" class="form-control block">
+        <select id="add-depart" type="text" class="form-control block">
           <option value selected>Choose</option>
           <option v-for="state in states" :value="state.name" :key="state.name">
             {{
@@ -320,7 +320,9 @@
     <hr class="bg-light mb-5" />
 
     <div class="row justify-content-sm-center">
-      <button type="button" class="btn btn-orange px-5 py-2">Submit</button>
+      <router-link href="#" to="/thankyou">
+        <button type="button" class="btn btn-orange px-5 py-2">Submit</button>
+      </router-link>
     </div>
   </div>
 </template>

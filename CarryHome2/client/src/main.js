@@ -14,7 +14,7 @@ import "animate.css/animate.css";
 //Import Fontawsome
 import { library } from "@fortawesome/fontawesome-svg-core";
 //Import Fontawesome Icon
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 //Import Component
 import Home from "./components/Home.vue";
@@ -27,11 +27,11 @@ import SendThai from "./components/Send/SendThai.vue";
 import CarryAdd from "./components/CarryAdd.vue";
 import Post from "./components/Post/Post.vue";
 import PostDetail from "./components/Post/PostDetail/PostDetail.vue";
-
 import ThankYou from "./components/ThankYou.vue";
+import Profile from "./components/Profile.vue";
 
 //add them to the library object
-library.add(faUser);
+library.add(faUserCircle, faPaperPlane);
 
 //Use Vue Router
 Vue.use(VueRouter);
@@ -87,6 +87,10 @@ const router = new VueRouter({
     {
       path: "/thankyou",
       component: ThankYou
+    },
+    {
+      path: "/profile",
+      component: Profile
     }
   ]
 });
