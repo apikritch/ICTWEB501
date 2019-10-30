@@ -2,9 +2,10 @@
   <div>
     <div class="row justify-content-sm-center">
       <h3 class="content-text text-orange mt-5 mb-5">
-        <router-link href="#" to="/" class="text-link">Send&nbsp;</router-link>
+        <router-link href="#" to="/" class="text-link">Home&nbsp;</router-link>
         <span class="text-white">></span>
-        <router-link href="#" to="/carry" class="text-link">&nbsp;Australia&nbsp;</router-link>
+        <router-link href="#" to="/send" class="text-link">&nbsp;Send&nbsp;</router-link>
+        <span class="text-white">></span> Australia
         <span class="text-white">></span> Where to?
       </h3>
     </div>
@@ -81,7 +82,8 @@
 
 <script>
 export default {
-  name: "send-aus"
+  name: "send-aus",
+  props: ["states"]
 };
 </script>
 

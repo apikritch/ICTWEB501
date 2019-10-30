@@ -2,9 +2,10 @@
   <div>
     <div class="row justify-content-sm-center">
       <h3 class="content-text text-orange mt-5 mb-5">
-        <router-link href="#" to="/" class="text-link">Carry&nbsp;</router-link>
+        <router-link href="#" to="/" class="text-link">Home&nbsp;</router-link>
         <span class="text-white">></span>
-        <router-link href="#" to="/carry" class="text-link">&nbsp;Thailand&nbsp;</router-link>
+        <router-link href="#" to="/carry" class="text-link">&nbsp;Carry&nbsp;</router-link>
+        <span class="text-white">></span> Thailand
         <span class="text-white">></span> Choose Your Location
       </h3>
     </div>
@@ -82,7 +83,8 @@
 
 <script>
 export default {
-  name: "home"
+  name: "home",
+  props: ["states"]
 };
 </script>
 

@@ -3,9 +3,26 @@
     <div class="filter position-fixed w-100 h-100"></div>
     <div class="container-fluid">
       <div>
-        <top></top>
+        <top
+          :loginText="loginText"
+          :loginTextState="loginTextState"
+          :loginSection="loginSection"
+          :loginSectionState="loginSectionState"
+          :dropdownBox="dropdownBox"
+          :dropdownBoxState="dropdownBoxState"
+          :userAccount="userAccount"
+          :userAccountState="userAccountState"
+          @showLogin="showLogin"
+          @showDropdown="showDropdown"
+          @hideUser="hideUser"
+        ></top>
         <div class="container">
-          <router-view></router-view>
+          <router-view
+            :states="states"
+            :$event="$event"
+            :carryAusThaiNext="carryAusThaiNext"
+            @carryAusThaiButton="carryAusThaiButton"
+          ></router-view>
         </div>
       </div>
     </div>
@@ -14,15 +31,23 @@
 
 <script>
 import Top from "./components/Top.vue";
+import CarryAus from "./components/Carry/CarryAus.vue";
+
 export default {
   name: "app",
   components: {
-    Top
+    Top,
+    CarryAus
   },
   data: function() {
     return {
       location: false,
       state: null,
+
+      loginText: true,
+      loginSection: false,
+      dropdownBox: false,
+      userAccount: false,
 
       states: [
         {
@@ -77,8 +102,37 @@ export default {
     }
   },
   methods: {
-    carryAusThaiButton: function() {
+    loginSectionState: function() {
+      return this.loginSection ? "d-flex" : "d-none";
+    },
+    loginTextState: function() {
+      return this.loginText ? "d-flex" : "d-none";
+    },
+    dropdownBoxState: function() {
+      return this.dropdownBox ? "d-flex" : "d-none";
+    },
+    userAccountState: function() {
+      return this.userAccount ? "d-flex" : "d-none";
+    },
+    showLogin: function() {
+      return (
+        (this.loginText = !this.loginText),
+        (this.loginSection = !this.loginSection)
+      );
+    },
+    showDropdown: function() {
+      return (this.dropdownBox = !this.dropdownBox);
+    },
+    hideUser: function() {
+      return (
+        (this.userAccount = !this.userAccount),
+        (this.dropdownBox = !this.dropdownBox)
+      );
+    },
+
+    carryAusThaiButton: function(e) {
       var fromState = document.getElementById("carryAusState").value;
+      console.log(fromState);
       var fromCity = document.getElementById("carryAusCity").value;
       var toThai = document.getElementById("carryAusTo").value;
       if (fromState == "" || fromCity == "" || toThai == "") {

@@ -2,11 +2,11 @@
   <div>
     <div class="row justify-content-sm-center">
       <h3 class="content-text text-orange mt-5 mb-5">
-        <router-link href="#" to="/" class="text-link">Carry&nbsp;</router-link>
+        <router-link href="#" to="/" class="text-link">Home&nbsp;</router-link>
         <span class="text-white">></span>
-        <router-link href="#" to="/carry" class="text-link">&nbsp;Australia&nbsp;</router-link>
-        <span class="text-white">></span>
-        Choose Your Location
+        <router-link href="#" to="/carry" class="text-link">&nbsp;Carry&nbsp;</router-link>
+        <span class="text-white">></span> Australia
+        <span class="text-white">></span> Choose Your Location
       </h3>
     </div>
     <hr class="bg-light mb-3 w-50" />
@@ -82,7 +82,9 @@
 
 <script>
 export default {
-  name: "carry-aus"
+  name: "carry-aus",
+  props: ["states", "carryAusThaiNext"],
+  methods: {}
 };
 </script>
 
