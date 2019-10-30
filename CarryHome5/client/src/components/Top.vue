@@ -3,11 +3,14 @@
     <!--Login Button-->
     <div class="row justify-content-end pt-3 mr-3">
       <div class="position-absolute">
-        <div v-if="loginText">
-          <div class="row justify-content-sm-end" :class="loginTextState">
-            <a href="#" class="login-section" @click="$emit('showLogin',(loginText, loginSection))">
-              <p class="plain-text-25 text-white">Log In</p>
-            </a>
+        <div>
+          <div class="row justify-content-sm-end">
+            <router-link href="#" class="login-section border-right border-white" to="/login">
+              <p class="plain-text-20 text-white mr-3 white-link">Log In</p>
+            </router-link>
+            <router-link href="#" class="login-section" to="/signup">
+              <p class="plain-text-20 text-white ml-3 white-link">Sign Up</p>
+            </router-link>
           </div>
         </div>
         <!--Login Button-->
@@ -37,11 +40,7 @@
                 <p>Your Help</p>
                 <p>Your Setting</p>
                 <hr class="bg-light" />
-                <a
-                  href="#"
-                  class="text-link-dark"
-                  @click="$emit('hideUser',(userAccount,dropdownBox))"
-                >
+                <a href="#" class="text-link-dark">
                   <p class="text-center">Log Out</p>
                 </a>
               </div>
@@ -54,162 +53,25 @@
 
     <div class="container">
       <div class="position-relative">
-        <div class="row justify-content-sm-center">
-          <router-link href="#" to="/">
-            <h1 class="logo-font text-white mt-3 mb-5">CH</h1>
-          </router-link>
-        </div>
-
-        <!--Login Section-->
-        <div v-if="loginSection">
-          <div class="position-absolute w-100" :class="loginSectionState">
-            <div class="mx-5 px-5">
-              <div class="card popup-background">
-                <div class="card-body">
-                  <button
-                    type="button"
-                    class="close close-outline login-section"
-                    aria-label="Close"
-                    @click="$emit('showLogin',(loginText, loginSection))"
-                  >
-                    <span aria-hidden="true" class="close-outline">&times;</span>
-                  </button>
-
-                  <div class="row">
-                    <div class="col-sm-6 text-center content-text text-white">Log In</div>
-                    <div class="col-sm-6 text-center content-text text-white">Sign Up</div>
-                  </div>
-                  <div class="row">
-                    <!--Log in-->
-                    <div class="col-sm-6 border-right border-white">
-                      <div class="container">
-                        <div class="justify-content-sm-start align-items-end mb-3">
-                          <label for="login-email" class="d-block">
-                            <h6>Email Address</h6>
-                          </label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="login-email"
-                            v-model="loginEmail"
-                          />
-                        </div>
-                        <div class="justify-content-sm-start align-items-end mb-3">
-                          <label for="login-password" class="d-block">
-                            <h6>Password</h6>
-                          </label>
-                          <input
-                            type="password"
-                            class="form-control"
-                            id="login-password"
-                            v-model="loginPassword"
-                          />
-                        </div>
-
-                        <div class="justify-content-sm-start align-items-end mb-3">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="postage-check" />
-                            <label class="custom-control-label" for="postage-check">
-                              <h6>Remember Me</h6>
-                            </label>
-                          </div>
-                        </div>
-
-                        <button
-                          type="button"
-                          class="btn btn-dark py-2 w-100 mb-3"
-                          @click="signup"
-                        >Log In</button>
-
-                        <div class="row">
-                          <div class="col-sm-12 text-right">
-                            <a href="#" class="text-link-forgot">
-                              <h6>Forget Password?</h6>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--Log in-->
-                    <!--Sign up-->
-                    <div class="col-sm-6">
-                      <div class="container">
-                        <div class="row justify-content-sm-start align-items-end mb-3">
-                          <div class="col-sm-6">
-                            <label for="sign-up-firstname" class="d-block">
-                              <h6>First Name</h6>
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="sign-up-firstname"
-                              v-model="signupFirstName"
-                            />
-                          </div>
-                          <div class="col-sm-6">
-                            <label for="sign-up-lastname" class="d-block">
-                              <h6>Last Name</h6>
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="sign-up-lastname"
-                              v-model="signupLastName"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="justify-content-sm-start align-items-end mb-3">
-                          <label for="login-email" class="d-block">
-                            <h6>Email Address</h6>
-                          </label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="login-email"
-                            v-model="signupEmail"
-                          />
-                        </div>
-
-                        <div class="justify-content-sm-start align-items-end mb-3">
-                          <label for="login-password" class="d-block">
-                            <h6>Password</h6>
-                          </label>
-                          <input
-                            type="password"
-                            class="form-control"
-                            id="login-password"
-                            v-model="signupPassword"
-                          />
-                        </div>
-
-                        <div class="justify-content-sm-start align-items-end mb-3">
-                          <label for="login-confirm-password" class="d-block">
-                            <h6>Confirm Password</h6>
-                          </label>
-                          <input
-                            type="password"
-                            class="form-control"
-                            id="login-confirm-password"
-                            v-model="signupConfirmPassword"
-                          />
-                        </div>
-
-                        <button
-                          type="button"
-                          class="btn btn-dark py-2 w-100"
-                          @click="signup"
-                        >Sign Up</button>
-                      </div>
-                    </div>
-                    <!--Sign up-->
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!--Logo-->
+        <div class="row justify-content-sm-center mt-3 mb-5">
+          <div class="col-3 align-self-center border-right border-white mr-4">
+            <router-link href="#" to="/carry">
+              <h5 class="text-white float-right mr-5 white-link">Carry</h5>
+            </router-link>
+          </div>
+          <div class="col-2 align-self-center text-center p-0">
+            <router-link href="#" to="/">
+              <h1 class="logo-font text-white w-100 white-link">CH</h1>
+            </router-link>
+          </div>
+          <div class="col-3 align-self-center border-left border-white ml-4">
+            <router-link href="#" to="/send">
+              <h5 class="text-white float-left ml-5 white-link">Send</h5>
+            </router-link>
           </div>
         </div>
-        <!--Login Section-->
+        <!--Logo-->
       </div>
     </div>
   </div>
@@ -220,27 +82,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "top",
-  data() {
-    return {
-      loginEmail: "rbwr",
-      loginPassword: "wrbwr",
-      signupFirstName: "fsbfs",
-      signupLastName: "fsb",
-      signupEmail: "rwg",
-      signupPassword: "wrgw",
-      signupConfirmPassword: "sfdb"
-    };
-  },
-  props: [
-    "loginText",
-    "loginTextState",
-    "loginSection",
-    "loginSectionState",
-    "dropdownBox",
-    "dropdownBoxState",
-    "userAccount",
-    "userAccountState"
-  ],
+  props: ["dropdownBox", "dropdownBoxState", "userAccount", "userAccountState"],
   components: {
     FontAwesomeIcon
   },

@@ -1,7 +1,7 @@
 .logo-font {
   font-family: "Sofia", cursive;
   font-weight: 400;
-  font-size: 75px;
+  font-size: 7.5vw;
 }
 
 .content-text {
@@ -14,9 +14,10 @@
   font-size: 100px;
 }
 
-.plain-text-25 {
+.plain-text-20 {
   font-weight: 300;
-  font-size: 25px;
+  font-size: 20px;
+  margin-bottom: 0px;
 }
 
 body {
@@ -153,28 +154,6 @@ a:hover {
   text-decoration: transparent;
 }
 
-.close {
-  color: #fff;
-  text-shadow: none;
-  opacity: 1;
-  position: absolute;
-  right: 5px;
-  top: -9px;
-  font-size: 3rem;
-  font-weight: lighter;
-}
-
-.close:hover,
-.close:not(:disabled):not(.disabled):hover,
-.close-outline:hover {
-  color: #fff;
-  opacity: 1;
-}
-
-.close-outline:focus {
-  outline: none;
-}
-
 .user-img-login {
   font-size: 3vw;
 }
@@ -194,4 +173,8 @@ a:hover {
 .text-link-dark:hover {
   color: #1d2124;
   text-decoration: transparent;
+}
+
+.white-link:hover {
+  color: #a0a0a0 !important;
 }

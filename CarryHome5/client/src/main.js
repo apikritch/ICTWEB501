@@ -29,6 +29,8 @@ import Post from "./components/Post/Post.vue";
 import PostDetail from "./components/Post/PostDetail/PostDetail.vue";
 import ThankYou from "./components/ThankYou.vue";
 import Profile from "./components/Profile.vue";
+import Login from "./components/Login.vue";
+import Signup from "./components/Signup.vue";
 
 //add them to the library object
 library.add(faUserCircle, faPaperPlane);
@@ -91,6 +93,14 @@ const router = new VueRouter({
     {
       path: "/profile",
       component: Profile
+    },
+    {
+      path: "/login",
+      component: Login
+    },
+    {
+      path: "/signup",
+      component: Signup
     }
   ]
 });

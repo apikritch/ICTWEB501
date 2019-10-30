@@ -4,17 +4,11 @@
     <div class="container-fluid">
       <div>
         <top
-          :loginText="loginText"
-          :loginTextState="loginTextState"
-          :loginSection="loginSection"
-          :loginSectionState="loginSectionState"
           :dropdownBox="dropdownBox"
           :dropdownBoxState="dropdownBoxState"
           :userAccount="userAccount"
           :userAccountState="userAccountState"
-          @showLogin="showLogin"
           @showDropdown="showDropdown"
-          @hideUser="hideUser"
         ></top>
         <div class="container">
           <router-view
@@ -110,32 +104,14 @@ export default {
     }
   },
   methods: {
-    loginSectionState: function() {
-      return this.loginSection ? "d-flex" : "d-none";
-    },
-    loginTextState: function() {
-      return this.loginText ? "d-flex" : "d-none";
-    },
     dropdownBoxState: function() {
       return this.dropdownBox ? "d-flex" : "d-none";
     },
     userAccountState: function() {
       return this.userAccount ? "d-flex" : "d-none";
     },
-    showLogin: function() {
-      return (
-        (this.loginText = !this.loginText),
-        (this.loginSection = !this.loginSection)
-      );
-    },
     showDropdown: function() {
       return (this.dropdownBox = !this.dropdownBox);
-    },
-    hideUser: function() {
-      return (
-        (this.userAccount = !this.userAccount),
-        (this.dropdownBox = !this.dropdownBox)
-      );
     },
     carryAusThaiButton: function(showCarryAusThaiButton) {
       if (showCarryAusThaiButton == true) {
