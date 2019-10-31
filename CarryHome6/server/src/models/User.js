@@ -1,13 +1,15 @@
 const bcrypt = require("bcrypt");
 
 async function hashPassword(user) {
-  if (!user.changed("password")) {
+  if (!user.changed("password") && !user.changed("password2")) {
     return;
   }
 
   const salt = await bcrypt.genSalt(10);
   const hashPasswordValue = await bcrypt.hash(user.password, salt);
+  const hashPassword2Value = await bcrypt.hash(user.password2, salt);
   user.setDataValue("password", hashPasswordValue);
+  user.setDataValue("password2", hashPassword2Value);
 }
 
 module.exports = (sequelize, DataTypes) => {
