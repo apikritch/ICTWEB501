@@ -17,8 +17,8 @@
 
         <!--Login Image-->
         <div v-if="$store.state.isUserLoggedIn">
-          <div class="row justify-content-sm-end mb-3" :class="userAccountState">
-            <a href="#" class="login-section" @click="$emit('showDropdown',dropdownBox)">
+          <div class="row justify-content-sm-end mb-3">
+            <a href="#" class="login-section" @click="showDropdown()">
               <font-awesome-icon icon="user-circle" class="text-white user-img-login login-section"></font-awesome-icon>
             </a>
           </div>
@@ -40,7 +40,7 @@
                 <p>Your Help</p>
                 <p>Your Setting</p>
                 <hr class="bg-light" />
-                <a href="#" class="text-link-dark">
+                <a href="#" class="text-link-dark" @click="logout">
                   <p class="text-center">Log Out</p>
                 </a>
               </div>
@@ -82,11 +82,28 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "top",
-  props: ["dropdownBox", "dropdownBoxState", "userAccount", "userAccountState"],
   components: {
     FontAwesomeIcon
   },
-  methods: {}
+  data: function() {
+    return {
+      dropdownBox: false
+    };
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("setToken", null);
+      this.$store.dispatch("setUser", null);
+      this.dropdownBox = !this.dropdownBox;
+      this.$router.push({ name: "root" });
+    },
+    dropdownBoxState: function() {
+      return this.dropdownBox ? "d-flex" : "d-none";
+    },
+    showDropdown: function() {
+      return (this.dropdownBox = !this.dropdownBox);
+    }
+  }
 };
 </script>
 

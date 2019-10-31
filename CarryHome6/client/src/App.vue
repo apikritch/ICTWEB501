@@ -3,13 +3,7 @@
     <div class="filter position-fixed w-100 h-100"></div>
     <div class="container-fluid">
       <div>
-        <top
-          :dropdownBox="dropdownBox"
-          :dropdownBoxState="dropdownBoxState"
-          :userAccount="userAccount"
-          :userAccountState="userAccountState"
-          @showDropdown="showDropdown"
-        ></top>
+        <top></top>
         <div class="container">
           <router-view
             :states="states"
@@ -43,8 +37,6 @@ export default {
 
       loginText: true,
       loginSection: false,
-      dropdownBox: false,
-      userAccount: false,
 
       states: [
         {
@@ -104,15 +96,6 @@ export default {
     }
   },
   methods: {
-    dropdownBoxState: function() {
-      return this.dropdownBox ? "d-flex" : "d-none";
-    },
-    userAccountState: function() {
-      return this.userAccount ? "d-flex" : "d-none";
-    },
-    showDropdown: function() {
-      return (this.dropdownBox = !this.dropdownBox);
-    },
     carryAusThaiButton: function(showCarryAusThaiButton) {
       if (showCarryAusThaiButton == true) {
         this.location = true;
