@@ -1,0 +1,54 @@
+.logo-font {
+  font-family: "Sofia", cursive;
+  font-weight: 400;
+  font-size: 75px;
+}
+
+.content-text {
+  font-family: "Vibur", cursive;
+  font-size: 40px;
+}
+
+.button-text {
+  font-family: "Vibur", cursive;
+  font-size: 100px;
+}
+
+.plain-text-25 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+}
+
+body {
+  background-image: url("../img/Jeff.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.filter {
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 100%;
+  height: 100%;
+}
+
+.text-orange {
+  color: #f2994a;
+}
+
+.btn-orange {
+  color: #fff;
+  background-color: #ff8315;
+  border-color: #ff8315;
+}
+
+.btn-orange:hover {
+  color: #fff;
+  background-color: #c25a00;
+  border-color: #c25a00;
+}
+
+a:hover {
+  color: transparent;
+}
