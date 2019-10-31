@@ -15,7 +15,7 @@
                   <label for="email" class="d-block">
                     <h6>Email Address</h6>
                   </label>
-                  <input type="email" class="form-control" id="email" v-model="loginEmail" />
+                  <input type="email" class="form-control" id="email" name="email" v-model="email" />
                 </div>
                 <div class="justify-content-sm-start align-items-end mb-3">
                   <label for="password" class="d-block">
@@ -25,21 +25,31 @@
                     type="password"
                     class="form-control"
                     id="password"
-                    v-model="loginPassword"
+                    name="password"
+                    v-model="password"
                     autocomplete="off"
                   />
                 </div>
 
                 <div class="justify-content-sm-start align-items-end mb-3">
                   <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="postage-check" />
-                    <label class="custom-control-label" for="postage-check">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="checkbox"
+                      name="checkbox"
+                    />
+                    <label class="custom-control-label" for="checkbox">
                       <h6>Remember Me</h6>
                     </label>
                   </div>
                 </div>
 
-                <button type="button" class="btn btn-dark py-2 w-100 mb-3">Log In</button>
+                <div>
+                  <div v-html="error" class="bg-danger text-white text-center mb-2 rounded"></div>
+                </div>
+
+                <button class="btn btn-dark py-2 w-100 mb-3" @click="login">Log In</button>
 
                 <div class="row">
                   <div class="col-sm-12 text-right">
@@ -60,13 +70,28 @@
 </template>
 
 <script>
+import AuthenticationService from "@/services/AuthenticationService";
+
 export default {
-  name: "login",
+  name: "Login",
   data() {
     return {
-      loginEmail: "",
-      loginPassword: ""
+      email: null,
+      password: null,
+      error: null
     };
+  },
+  methods: {
+    async login() {
+      try {
+        await AuthenticationService.login({
+          email: this.email,
+          password: this.password
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    }
   }
 };
 </script>

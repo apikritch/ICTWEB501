@@ -11,4 +11,6 @@ module.exports = app => {
     AuthenticationControllerPolicy.signup,
     AuthenticationController.signup
   );
+
+  app.post("/login", AuthenticationController.login);
 };
