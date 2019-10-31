@@ -4,7 +4,7 @@
     <div class="row justify-content-end pt-3 mr-3">
       <div class="position-absolute">
         <div>
-          <div class="row justify-content-sm-end">
+          <div v-if="!$store.state.isUserLoggedIn" class="row justify-content-sm-end">
             <router-link href="#" class="login-section border-right border-white" to="/login">
               <p class="plain-text-20 text-white mr-3 white-link">Log In</p>
             </router-link>
@@ -16,7 +16,7 @@
         <!--Login Button-->
 
         <!--Login Image-->
-        <div v-if="userAccount">
+        <div v-if="$store.state.isUserLoggedIn">
           <div class="row justify-content-sm-end mb-3" :class="userAccountState">
             <a href="#" class="login-section" @click="$emit('showDropdown',dropdownBox)">
               <font-awesome-icon icon="user-circle" class="text-white user-img-login login-section"></font-awesome-icon>
