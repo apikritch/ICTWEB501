@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-for="post in posts" :key="post.id" class="text-orange">{{post.price}}</div>
     <div class="mx-5 px-5">
       <div class="row justify-content-sm-start">
         <h3 class="content-text text-orange ml-3">Send</h3>
@@ -16,9 +17,9 @@
           <label for="filter-from-country" class="text-orange d-block">Country</label>
           <select id="filter-from-country" type="text" class="form-control block">
             <option value selected>Choose</option>
-            <option v-for="state in states" :value="state.name" :key="state.name">
+            <option v-for="post in posts" :value="post.price" :key="post.price">
               {{
-              state.name
+              post.price
               }}
             </option>
           </select>
@@ -209,10 +210,19 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import PostService from "@/services/PostService";
 export default {
   name: "post",
   components: {
     FontAwesomeIcon
+  },
+  data() {
+    return {
+      posts: null
+    };
+  },
+  async mounted() {
+    this.posts = (await PostService.getAllPosts()).data;
   }
 };
 </script>

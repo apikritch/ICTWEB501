@@ -1,5 +1,6 @@
 const AuthenticationController = require("./../controllers/AuthenticationController");
 const AuthenticationControllerPolicy = require("./../policies/AuthenticationControllerPolicy");
+const PostsController = require("./../controllers/PostsController");
 
 module.exports = app => {
   app.get("/status", (req, res) => {
@@ -13,4 +14,7 @@ module.exports = app => {
   );
 
   app.post("/login", AuthenticationController.login);
+
+  app.get("/posts", PostsController.getAllPosts);
+  app.post("/posts", PostsController.postPosts);
 };

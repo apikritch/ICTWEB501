@@ -11,7 +11,7 @@ import Send from "@/components/Send/Send.vue";
 import SendAus from "@/components/Send/SendAus.vue";
 import SendThai from "@/components/Send/SendThai.vue";
 import CarryAdd from "@/components/CarryAdd.vue";
-import Post from "@/components/Post/Post.vue";
+import Posts from "@/components/Post/Posts.vue";
 import PostDetail from "@/components/Post/PostDetail/PostDetail.vue";
 import ThankYou from "@/components/ThankYou.vue";
 import Profile from "@/components/Profile.vue";
@@ -65,9 +65,9 @@ export default new Router({
       component: CarryAdd
     },
     {
-      path: "/post",
-      name: "Post",
-      component: Post
+      path: "/posts",
+      name: "Posts",
+      component: Posts
     },
     {
       path: "/post/detail",

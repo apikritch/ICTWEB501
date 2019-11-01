@@ -56,7 +56,7 @@
         <!--Logo-->
         <div class="row justify-content-sm-center mt-3 mb-5">
           <div class="col-3 align-self-center border-right border-white mr-4">
-            <router-link href="#" to="/carry">
+            <router-link href="#" to="/carry/add">
               <h5 class="text-white float-right mr-5 white-link">Carry</h5>
             </router-link>
           </div>
@@ -66,7 +66,7 @@
             </router-link>
           </div>
           <div class="col-3 align-self-center border-left border-white ml-4">
-            <router-link href="#" to="/send">
+            <router-link href="#" to="/post">
               <h5 class="text-white float-left ml-5 white-link">Send</h5>
             </router-link>
           </div>
