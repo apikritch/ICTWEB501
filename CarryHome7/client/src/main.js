@@ -28,14 +28,9 @@ sync(store, router);
 
 Vue.use(BootstrapVue);
 Vue.use(Vuelidate);
+Vue.prototype.moment = moment;
 
 Vue.config.productionTip = false;
-
-Vue.filter("formatDate", function(value) {
-  if (value) {
-    return moment(String(value)).format("dddd, DD/MM/YYYY");
-  }
-});
 
 new Vue({
   render: h => h(App),

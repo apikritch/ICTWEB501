@@ -15,8 +15,9 @@ module.exports = app => {
 
   app.post("/login", AuthenticationController.login);
 
-  app.get("/posts", PostsController.getAllPosts);
+  app.get("/posts", PostsController.getPosts);
   app.post("/posts", PostsController.postPosts);
 
   app.get("/posts/:postsId", PostsController.getPostById);
+  app.put("/posts/:postsId", PostsController.putPostById);
 };

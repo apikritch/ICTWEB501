@@ -16,33 +16,21 @@
           <label for="filter-from-country" class="text-orange d-block">Country</label>
           <select id="filter-from-country" type="text" class="form-control block">
             <option value selected>Choose</option>
-            <option v-for="post in posts" :value="post.price" :key="post.price">
-              {{
-              post.price
-              }}
-            </option>
+            <option></option>
           </select>
         </div>
         <div class="col-sm-4">
           <label for="filter-from-state" class="text-orange d-block">State</label>
           <select id="filter-from-state" type="text" class="form-control block">
             <option value selected>Choose</option>
-            <option v-for="state in states" :value="state.name" :key="state.name">
-              {{
-              state.name
-              }}
-            </option>
+            <option></option>
           </select>
         </div>
         <div class="col-sm-4">
           <label for="filter-from-city" class="text-orange d-block">City</label>
           <select id="filter-from-city" type="text" class="form-control block">
             <option value selected>Choose</option>
-            <option v-for="state in states" :value="state.name" :key="state.name">
-              {{
-              state.name
-              }}
-            </option>
+            <option></option>
           </select>
         </div>
       </div>
@@ -57,22 +45,14 @@
           <label for="filter-to-country" class="text-orange d-block">Country</label>
           <select id="filter-to-country" type="text" class="form-control block">
             <option value selected>Choose</option>
-            <option v-for="state in states" :value="state.name" :key="state.name">
-              {{
-              state.name
-              }}
-            </option>
+            <option></option>
           </select>
         </div>
         <div class="col-sm-4">
           <label for="filter-to-city" class="text-orange d-block">City</label>
           <select id="filter-to-city" type="text" class="form-control block">
             <option value selected>Choose</option>
-            <option v-for="state in states" :value="state.name" :key="state.name">
-              {{
-              state.name
-              }}
-            </option>
+            <option></option>
           </select>
         </div>
       </div>
@@ -86,17 +66,15 @@
           </h4>
           <select id="filter-depart" type="text" class="form-control block">
             <option value selected>Choose</option>
-            <option v-for="state in states" :value="state.name" :key="state.name">
-              {{
-              state.name
-              }}
-            </option>
+            <option></option>
           </select>
         </div>
       </div>
       <!--Depart-->
 
       <hr class="bg-light mb-5" />
+
+      <Search></Search>
 
       <!--Post 1-->
       <div class="row justify-content-sm-center mb-3" v-for="post in posts" :key="post.id">
@@ -114,7 +92,7 @@
                     <h6 class="text-orange">
                       <b>Depart:</b>
                     </h6>
-                    <h6>{{ post.depart | formatDate}}</h6>
+                    <h6>{{moment(post.depart).format('dddd, DD MMM YYYY')}}</h6>
                     <h6 class="text-orange">
                       <b>From:</b>
                     </h6>
@@ -140,7 +118,7 @@
                           {{post.price}}
                           <span class="text-orange">$/Kg</span>
                         </h4>
-                        <router-link href="#" :to="'/posts/' + post.id">
+                        <router-link href="#" :to="'/post/' + post.id">
                           <button type="button" class="btn btn-orange">Select</button>
                         </router-link>
                       </div>
@@ -160,18 +138,26 @@
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import PostService from "@/services/PostService";
+import Search from "@/components/Search";
+
 export default {
   name: "Post",
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    Search
   },
   data() {
     return {
       posts: null
     };
   },
-  async mounted() {
-    this.posts = (await PostService.getAllPosts()).data;
+  watch: {
+    "$route.query.search": {
+      immediate: true,
+      async handler(value) {
+        this.posts = (await PostService.getPosts(value)).data;
+      }
+    }
   }
 };
 </script>

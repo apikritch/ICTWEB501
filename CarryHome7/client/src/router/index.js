@@ -11,6 +11,7 @@ import Send from "@/components/Send/Send.vue";
 import SendAus from "@/components/Send/SendAus.vue";
 import SendThai from "@/components/Send/SendThai.vue";
 import CreatePost from "@/components/CreatePost.vue";
+import EditPost from "@/components/EditPost.vue";
 import Post from "@/components/Post/Post.vue";
 import ViewPost from "@/components/Post/PostDetail/ViewPost.vue";
 import ThankYou from "@/components/ThankYou.vue";
@@ -73,6 +74,11 @@ export default new Router({
       path: "/post/:postId",
       name: "viewpost",
       component: ViewPost
+    },
+    {
+      path: "/post/:postId/edit",
+      name: "editpost",
+      component: EditPost
     },
     {
       path: "/thankyou",

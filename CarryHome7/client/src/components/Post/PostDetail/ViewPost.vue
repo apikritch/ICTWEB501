@@ -16,7 +16,7 @@
           <div class="w-100">
             <div class="card">
               <div class="card-body">
-                <div class="container">
+                <div class="container" v-if="post">
                   <!--User Image-->
                   <div class="row justify-content-sm-center">
                     <font-awesome-icon icon="user-circle" class="user-img-detail"></font-awesome-icon>
@@ -101,7 +101,7 @@
                               </h6>
                             </div>
                             <div class="col-sm-7 text-left information-right">
-                              <h6>{{ post.depart | formatDate}}</h6>
+                              <h6>{{moment(post.depart).format('dddd, DD MMMM YYYY')}}</h6>
                             </div>
                           </div>
                           <div class="row">
