@@ -12,8 +12,7 @@ module.exports = {
         .required(),
       password: Joi.string()
         .pattern(/^[a-zA-Z0-9]{8,32}$/)
-        .required(),
-      password2: Joi.ref("password")
+        .required()
     });
     //Using Joi schema to validate user data
     const { error, value } = schema.validate(req.body);

@@ -19,10 +19,15 @@ import "animate.css/animate.css";
 //Import Fontawsome
 import { library } from "@fortawesome/fontawesome-svg-core";
 //Import Fontawesome Icon
-import { faUserCircle, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserCircle,
+  faPaperPlane,
+  faPlus,
+  faPen
+} from "@fortawesome/free-solid-svg-icons";
 
 //add them to the library object
-library.add(faUserCircle, faPaperPlane);
+library.add(faUserCircle, faPaperPlane, faPlus, faPen);
 
 sync(store, router);
 

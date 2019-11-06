@@ -46,24 +46,10 @@
                     autocomplete="off"
                   />
                 </div>
-
-                <div class="justify-content-sm-start align-items-end mb-3">
-                  <label for="password2" class="d-block">
-                    <h6>Confirm Password</h6>
-                  </label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password2"
-                    name="password2"
-                    v-model="password2"
-                    autocomplete="off"
-                  />
-                </div>
                 <div>
                   <div v-html="error" class="bg-danger text-white text-center mb-2 rounded"></div>
                 </div>
-                <button class="btn btn-dark py-2 w-100" @click="signup">Sign Up</button>
+                <button type="button" class="btn btn-dark py-2 w-100" @click="signup">Sign Up</button>
               </div>
             </form>
             <!--Sign up-->
@@ -81,11 +67,10 @@ export default {
   name: "Signup",
   data() {
     return {
-      fname: null,
-      lname: null,
-      email: null,
-      password: null,
-      password2: null,
+      fname: "",
+      lname: "",
+      email: "",
+      password: "",
       error: null
     };
   },
@@ -96,11 +81,12 @@ export default {
           fname: this.fname,
           lname: this.lname,
           email: this.email,
-          password: this.password,
-          password2: this.password2
+          password: this.password
         });
         this.$store.dispatch("setToken", responce.data.token);
         this.$store.dispatch("setUser", responce.data.user);
+
+        this.$router.go(-1);
       } catch (error) {
         this.error = error.response.data.error;
       }

@@ -10,6 +10,18 @@
 
       <hr class="bg-light mb-5" />
 
+      <!--Edit Button-->
+      <div class="container" v-if="$store.state.isUserLoggedIn">
+        <div class="row justify-content-end">
+          <router-link href="#" :to="'/post/' + post.Id + '/edit'">
+            <button type="button" class="btn btn-orange px-3 py-2 create-but">
+              <font-awesome-icon icon="pen"></font-awesome-icon>&nbsp;Edit Post
+            </button>
+          </router-link>
+        </div>
+      </div>
+      <!--Create Button-->
+
       <!--Post Information-->
       <div class="row justify-content-sm-center mb-3">
         <div class="col-sm-12">

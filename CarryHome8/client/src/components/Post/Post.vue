@@ -74,7 +74,21 @@
 
       <hr class="bg-light mb-5" />
 
-      <Search class="mb-4"></Search>
+      <!--Search-->
+      <Search class="mb-3"></Search>
+      <!--Search-->
+
+      <!--Create Button-->
+      <div class="container" v-if="$store.state.isUserLoggedIn">
+        <div class="row justify-content-end">
+          <router-link href="#" to="/post/aus/create">
+            <button type="button" class="btn btn-orange px-3 py-2 create-but">
+              <font-awesome-icon icon="plus"></font-awesome-icon>&nbsp;Create Post
+            </button>
+          </router-link>
+        </div>
+      </div>
+      <!--Create Button-->
 
       <!--Post 1-->
       <div class="row justify-content-sm-center mb-3" v-for="post in posts" :key="post.id">

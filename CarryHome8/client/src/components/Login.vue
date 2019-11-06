@@ -49,7 +49,7 @@
                   <div v-html="error" class="bg-danger text-white text-center mb-2 rounded"></div>
                 </div>
 
-                <button class="btn btn-dark py-2 w-100 mb-3" @click="login">Log In</button>
+                <button type="button" class="btn btn-dark py-2 w-100 mb-3" @click="login">Log In</button>
 
                 <div class="row">
                   <div class="col-sm-12 text-right">
@@ -76,8 +76,8 @@ export default {
   name: "Login",
   data() {
     return {
-      email: null,
-      password: null,
+      email: "",
+      password: "",
       error: null
     };
   },
@@ -91,6 +91,8 @@ export default {
 
         this.$store.dispatch("setToken", responce.data.token);
         this.$store.dispatch("setUser", responce.data.user);
+
+        this.$router.go(-1);
       } catch (error) {
         this.error = error.response.data.error;
       }

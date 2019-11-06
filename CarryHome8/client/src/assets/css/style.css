@@ -174,3 +174,7 @@ a:hover {
 .white-link:hover {
   color: #a0a0a0 !important;
 }
+
+.create-but {
+  margin-bottom: 1rem;
+}
