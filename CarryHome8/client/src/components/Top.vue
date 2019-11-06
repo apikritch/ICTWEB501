@@ -54,9 +54,9 @@
     <div class="container">
       <div class="position-relative">
         <!--Logo-->
-        <div class="row justify-content-sm-center mt-3 mb-5">
+        <div class="row justify-content-sm-center mt-3 mb-3">
           <div class="col-3 align-self-center border-right border-white mr-4">
-            <router-link href="#" to="/post/create">
+            <router-link href="#" to="/carry">
               <h5 class="text-white float-right mr-5 white-link">Carry</h5>
             </router-link>
           </div>

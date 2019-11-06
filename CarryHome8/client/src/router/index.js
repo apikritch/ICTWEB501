@@ -10,7 +10,8 @@ import CarryThai from "@/components/Carry/CarryThai.vue";
 import Send from "@/components/Send/Send.vue";
 import SendAus from "@/components/Send/SendAus.vue";
 import SendThai from "@/components/Send/SendThai.vue";
-import CreatePost from "@/components/CreatePost.vue";
+import CreatePostAus from "@/components/CreatePostAus.vue";
+import CreatePostThai from "@/components/CreatePostThai.vue";
 import EditPost from "@/components/EditPost.vue";
 import Post from "@/components/Post/Post.vue";
 import ViewPost from "@/components/Post/PostDetail/ViewPost.vue";
@@ -28,82 +29,104 @@ export default new Router({
     {
       path: "/",
       name: "root",
-      component: Home
+      component: Home,
+      props: true
     },
     {
       path: "/carry",
       name: "Carry",
-      component: Carry
+      component: Carry,
+      props: true
     },
     {
       path: "/carry/australia",
       name: "CarryAus",
-      component: CarryAus
+      component: CarryAus,
+      props: true
     },
     {
       path: "/carry/thailand",
       name: "CarryThai",
-      component: CarryThai
+      component: CarryThai,
+      props: true
     },
     {
       path: "/send",
       name: "Send",
-      component: Send
+      component: Send,
+      props: true
     },
     {
       path: "/send/australia",
       name: "SendAus",
-      component: SendAus
+      component: SendAus,
+      props: true
     },
     {
       path: "/send/thailand",
       name: "SendThai",
-      component: SendThai
+      component: SendThai,
+      props: true
     },
     {
-      path: "/post/create",
-      name: "createpost",
-      component: CreatePost
+      path: "/post/aus/create",
+      name: "createpostaus",
+      component: CreatePostAus,
+      props: true
+    },
+    {
+      path: "/post/thai/create",
+      name: "createpostthai",
+      component: CreatePostThai,
+      props: true
     },
     {
       path: "/post",
       name: "post",
-      component: Post
+      component: Post,
+      props: true
     },
     {
       path: "/post/:postId",
       name: "viewpost",
-      component: ViewPost
+      component: ViewPost,
+      props: true
     },
     {
       path: "/post/:postId/edit",
       name: "editpost",
-      component: EditPost
+      component: EditPost,
+      props: true
     },
     {
       path: "/thankyou",
       name: "ThankYou",
-      component: ThankYou
+      component: ThankYou,
+      props: true
     },
     {
       path: "/profile",
       name: "Profile",
-      component: Profile
+      component: Profile,
+      props: true
     },
     {
       path: "/login",
       name: "Login",
-      component: Login
+      component: Login,
+      props: true
     },
     {
       path: "/signup",
       name: "Signup",
-      component: Signup
+      component: Signup,
+      props: true
     },
     {
       path: "/thank_you_for_signing_up",
       name: "ThankYouSignup",
-      component: ThankYouSignup
+      component: ThankYouSignup,
+      props: true
     }
   ]
 });

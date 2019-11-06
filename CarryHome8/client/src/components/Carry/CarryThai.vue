@@ -74,7 +74,7 @@
         </div>
 
         <div class="row justify-content-sm-center">
-          <router-link href="#" to="/post/create">
+          <router-link href="#" to="/post/aus/create">
             <button type="button" class="btn btn-orange px-5 py-2" v-if="carryThaiAusNext">Next</button>
           </router-link>
         </div>

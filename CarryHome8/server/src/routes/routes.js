@@ -2,6 +2,8 @@ const AuthenticationController = require("./../controllers/AuthenticationControl
 const AuthenticationControllerPolicy = require("./../policies/AuthenticationControllerPolicy");
 const PostsController = require("./../controllers/PostsController");
 const CountriesController = require("./../controllers/CountriesController");
+const StatesController = require("./../controllers/StatesController");
+const ProvincesController = require("./../controllers/ProvincesController");
 
 module.exports = app => {
   app.get("/status", (req, res) => {
@@ -23,4 +25,6 @@ module.exports = app => {
   app.put("/posts/:postsId", PostsController.putPostById);
 
   app.get("/countries", CountriesController.getAllCountries);
+  app.get("/states", StatesController.getAllStates);
+  app.get("/provinces", ProvincesController.getAllProvinces);
 };

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="$store.state.isUserLoggedIn">
     <div class="mx-5 px-5">
       <div class="row justify-content-sm-start">
         <h3 class="content-text text-orange ml-3">Profile</h3>

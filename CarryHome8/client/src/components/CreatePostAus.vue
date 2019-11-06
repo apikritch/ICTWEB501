@@ -1,12 +1,9 @@
 <template>
-  <div class="mx-5 px-5">
+  <div class="mx-5 px-5" v-if="$store.state.isUserLoggedIn">
     <div class="row justify-content-sm-start">
       <h3 class="content-text text-orange ml-3">Carry</h3>
     </div>
-
     <hr class="bg-light mb-5" />
-
-    <div v-for="country in countries" :key="country.id">{{country.name}}</div>
 
     <!--From-->
     <h4 class="text-orange">
@@ -15,9 +12,15 @@
     <div class="row justify-content-sm-start align-items-end mb-3">
       <div class="col-sm-4">
         <label for="add-from-country" class="text-orange d-block">Country</label>
-        <select id="add-from-country" type="text" class="form-control block">
-          <option value selected>Choose</option>
-          <option v-for="country in countries" :value="country.name" :key="country.name">
+        <select
+          id="add-from-country"
+          type="text"
+          class="form-control block"
+          v-model="fromcountry"
+          @change="changeRoute"
+        >
+          <option value disabled>Choose</option>
+          <option v-for="country in countries" :value="country.name" :key="country.id">
             {{
             country.name
             }}
@@ -26,9 +29,14 @@
       </div>
       <div class="col-sm-4">
         <label for="add-from-state" class="text-orange d-block">State</label>
-        <select id="add-from-state" type="text" class="form-control block">
-          <option value selected>Choose</option>
-          <option v-for="state in states" :value="state.name" :key="state.name">
+        <select
+          id="add-from-state"
+          type="text"
+          class="form-control block"
+          v-model="$v.post.state.$model"
+        >
+          <option disable value>Choose</option>
+          <option v-for="state in states" :value="state.name" :key="state.id">
             {{
             state.name
             }}
@@ -36,15 +44,13 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <label for="add-from-city" class="text-orange d-block">City</label>
-        <select id="add-from-city" type="text" class="form-control block">
-          <option value selected>Choose</option>
-          <option v-for="state in states" :value="state.name" :key="state.name">
-            {{
-            state.name
-            }}
-          </option>
-        </select>
+        <label for="add-from-suburb" class="text-orange d-block">Suburb</label>
+        <input
+          type="text"
+          id="add-from-suburb"
+          class="form-control block"
+          v-model="$v.post.suburb.$model"
+        />
       </div>
     </div>
     <!--From-->
@@ -57,15 +63,27 @@
         </h4>
 
         <label for="add-to-country" class="text-orange d-block">Country</label>
-        <input type="text" id="add-to-country" class="form-control" readonly />
+        <select id="add-to-country" type="text" class="form-control block" v-model="tocountry">
+          <option disable value>Choose</option>
+          <option v-for="country in countries" :value="country.name" :key="country.id">
+            {{
+            country.name
+            }}
+          </option>
+        </select>
       </div>
       <div class="col-sm-4">
-        <label for="add-to-city" class="text-orange d-block">City</label>
-        <select id="add-to-city" type="text" class="form-control block">
+        <label for="add-to-province" class="text-orange d-block">Province</label>
+        <select
+          id="add-to-province"
+          type="text"
+          class="form-control block"
+          v-model="$v.post.province.$model"
+        >
           <option value selected>Choose</option>
-          <option v-for="state in states" :value="state.name" :key="state.name">
+          <option v-for="province in provinces" :value="province.name" :key="province.name">
             {{
-            state.name
+            province.name
             }}
           </option>
         </select>
@@ -269,14 +287,22 @@
     <div class="row justify-content-sm-start align-items-end mb-3">
       <div class="col-sm-4">
         <label for="add-aus-state" class="text-orange d-block">State</label>
-        <b-form-input
+
+        <b-form-select
           required
-          type="text"
           id="add-aus-state"
           v-model="$v.post.state.$model"
           :state="$v.post.state.$dirty ? !$v.post.state.$error : null"
           aria-describedby="state-feedback"
-        />
+        >
+          <option value disabled>Choose</option>
+          <option v-for="state in states" :value="state.name" :key="state.id">
+            {{
+            state.name
+            }}
+          </option>
+        </b-form-select>
+
         <b-form-invalid-feedback
           class="text-white bg-danger rounded p-1"
           id="state-feedback"
@@ -329,14 +355,22 @@
     <div class="row justify-content-sm-start align-items-end mb-3">
       <div class="col-sm-4">
         <label for="add-thai-province" class="text-orange d-block">Province</label>
-        <b-form-input
+
+        <b-form-select
           required
-          type="text"
           id="add-thai-province"
           v-model="$v.post.province.$model"
           :state="$v.post.province.$dirty ? !$v.post.province.$error : null"
           aria-describedby="province-feedback"
-        />
+        >
+          <option value disabled>Choose</option>
+          <option v-for="province in provinces" :value="province.name" :key="province.id">
+            {{
+            province.name
+            }}
+          </option>
+        </b-form-select>
+
         <b-form-invalid-feedback
           class="text-white bg-danger rounded p-1"
           id="province-feedback"
@@ -453,38 +487,62 @@
 
 <script>
 import CountryService from "@/services/CountryService";
+import StateService from "@/services/StateService";
+import ProvinceService from "@/services/ProvinceService";
 
 import PostService from "@/services/PostService";
 import { validationMixin } from "vuelidate";
 import { required, minLength } from "vuelidate/lib/validators";
 
 export default {
-  name: "CreatePost",
+  name: "CreatePostAus",
   data() {
     return {
       countries: null,
+      states: null,
+      provinces: null,
       post: {
-        depart: null,
-        fname: null,
-        lname: null,
-        email: null,
-        social: null,
-        phoneth: null,
-        phoneau: null,
-        address1au: null,
-        address2au: null,
-        suburb: null,
-        state: null,
-        postcodeau: null,
-        addressth: null,
-        province: null,
-        postcodeth: null,
-        pickup: null,
-        price: null,
-        postopt: null,
-        description: null
-      }
+        depart: "",
+        fname: "",
+        lname: "",
+        email: "",
+        social: "",
+        phoneth: "",
+        phoneau: "",
+        address1au: "",
+        address2au: "",
+        suburb: "",
+        state: "",
+        postcodeau: "",
+        addressth: "",
+        province: "",
+        postcodeth: "",
+        pickup: "",
+        price: "",
+        postopt: "",
+        description: ""
+      },
+      fromcountry: "",
+      tocountry: ""
     };
+  },
+  created() {
+    if (this.$route.params.value1) {
+      this.fromcountry = this.$route.params.value1;
+    }
+    if (this.$route.params.value2) {
+      this.post.state = this.$route.params.value2;
+    }
+    if (this.$route.params.value3) {
+      this.post.suburb = this.$route.params.value3;
+    }
+
+    if (this.$route.params.value4) {
+      this.tocountry = this.$route.params.value4;
+    }
+    if (this.$route.params.value5) {
+      this.post.province = this.$route.params.value5;
+    }
   },
   mixins: [validationMixin],
   validations: {
@@ -562,14 +620,19 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    changeRoute() {
+      if (this.fromcountry == "Thailand") {
+        this.$router.push({
+          name: "createpostthai"
+        });
+      }
     }
   },
   async mounted() {
-    try {
-      this.countries = (await CountryService.getAllCountries()).data;
-    } catch (error) {
-      console.log(error);
-    }
+    this.countries = (await CountryService.getAllCountries()).data;
+    this.states = (await StateService.getAllStates()).data;
+    this.provinces = (await ProvinceService.getAllProvinces()).data;
   }
 };
 </script>

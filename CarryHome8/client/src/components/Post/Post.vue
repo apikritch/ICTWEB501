@@ -74,7 +74,7 @@
 
       <hr class="bg-light mb-5" />
 
-      <Search></Search>
+      <Search class="mb-4"></Search>
 
       <!--Post 1-->
       <div class="row justify-content-sm-center mb-3" v-for="post in posts" :key="post.id">

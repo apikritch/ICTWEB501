@@ -6,7 +6,6 @@
         <top></top>
         <div class="container">
           <router-view
-            :states="states"
             :carryAusThaiNext="carryAusThaiNext"
             :carryThaiAusNext="carryThaiAusNext"
             :sendAusThaiNext="sendAusThaiNext"
@@ -32,32 +31,7 @@ export default {
   },
   data: function() {
     return {
-      location: false,
-      state: null,
-
-      loginText: true,
-      loginSection: false,
-
-      states: [
-        {
-          name: "New South Wales"
-        },
-        {
-          name: "Western Australia"
-        },
-        {
-          name: "Queensland"
-        },
-        {
-          name: "South Australia"
-        },
-        {
-          name: "Victoria"
-        },
-        {
-          name: "Tasmania"
-        }
-      ]
+      location: false
     };
   },
   computed: {

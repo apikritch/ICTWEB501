@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="row justify-content-sm-center">
       <h3 class="content-text text-orange mt-5 mb-5">
         <router-link href="#" to="/" class="text-link">Home&nbsp;</router-link>
@@ -9,71 +9,110 @@
         <span class="text-white">></span> Choose Your Location
       </h3>
     </div>
-    <hr class="bg-light mb-3 w-50" />
+
+    <hr class="bg-light mb-4 w-50" />
+
+    <h4 class="text-orange">
+      <u>Form</u>
+    </h4>
     <div class="row">
-      <div class="col mt-3">
-        <div class="row mb-3">
-          <div class="col-sm-6">
-            <div class="row justify-content-sm-end mr-1">
-              <div>
-                <label for="carryAusState" class="text-orange d-block">From State</label>
-                <select
-                  id="carryAusState"
-                  type="text"
-                  class="form-control block"
-                  @change="showCarryAusThaiButton"
-                >
-                  <option value selected>Choose</option>
-                  <option v-for="state in states" :value="state.name" :key="state.name">
-                    {{
-                    state.name
-                    }}
-                  </option>
-                </select>
-              </div>
-            </div>
+      <div class="col-sm-4">
+        <label for="carryAusCountry" class="text-orange d-block">Country</label>
+        <select
+          id="carryAusCountry"
+          type="text"
+          class="form-control block"
+          @change="showCarryAusThaiButton"
+          v-model="carryAusCountry"
+        >
+          <option value disabled>Choose</option>
+          <option v-for="country in countries" :value="country.name" :key="country.id">
+            {{
+            country.name
+            }}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <label for="carryAusState" class="text-orange d-block">State</label>
+        <select
+          id="carryAusState"
+          type="text"
+          class="form-control block"
+          @change="showCarryAusThaiButton"
+          v-model="carryAusState"
+        >
+          <option value disabled>Choose</option>
+          <option v-for="state in states" :value="state.name" :key="state.id">
+            {{
+            state.name
+            }}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <label for="carryAusSuburb" class="text-orange d-block">Suburb</label>
+        <input
+          id="carryAusSuburb"
+          type="text"
+          class="form-control"
+          @keyup="showCarryAusThaiButton"
+          v-model="carryAusSuburb"
+        />
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <h4 class="text-orange mt-3">
+          <u>To</u>
+        </h4>
+        <div class="row">
+          <div class="col-6">
+            <label for="carryAusCountryTo" class="text-orange d-block">Country</label>
+            <select
+              id="carryAusCountryTo"
+              type="text"
+              class="form-control block"
+              @change="showCarryAusThaiButton"
+              v-model="carryAusCountryTo"
+            >
+              <option value disabled>Choose</option>
+              <option v-for="country in countries" :value="country.name" :key="country.id">
+                {{
+                country.name
+                }}
+              </option>
+            </select>
           </div>
-          <div class="col-sm-6">
-            <div class="row justify-content-sm-start ml-1">
-              <div>
-                <label for="carryAusCity" class="text-orange d-block">City</label>
-                <select
-                  id="carryAusCity"
-                  type="text"
-                  class="form-control block"
-                  @change="showCarryAusThaiButton"
-                >
-                  <option value selected>Choose</option>
-                  <option v-for="state in states" :value="state.name" :key="state.name">
-                    {{
-                    state.name
-                    }}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-sm-center mb-5">
-          <div>
-            <label for="carryAusTo" class="text-orange d-block">To</label>
+          <div class="col-6">
+            <label for="carryAusTo" class="text-orange d-block">Province</label>
             <select
               id="carryAusTo"
               type="text"
               class="form-control block"
               @change="showCarryAusThaiButton"
+              v-model="carryAusTo"
             >
-              <option value selected>Choose</option>
-              <option v-for="state in states" :value="state.name" :key="state.name">
+              <option value disabled>Choose</option>
+              <option v-for="province in provinces" :value="province.name" :key="province.id">
                 {{
-                state.name
+                province.name
                 }}
               </option>
             </select>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
         <div class="row justify-content-sm-center">
-          <router-link href="#" to="/post/create">
+          <router-link
+            href="#"
+            :to="{name: 'createpostaus', params:{value1:this.carryAusCountry, value2:this.carryAusState,
+            value3:this.carryAusSuburb, value4:this.carryAusCountryTo,
+            value5:this.carryAusTo}}"
+          >
             <button type="button" class="btn btn-orange px-5 py-2" v-if="carryAusThaiNext">Next</button>
           </router-link>
         </div>
@@ -83,20 +122,54 @@
 </template>
 
 <script>
+import CountryService from "@/services/CountryService";
+import StateService from "@/services/StateService";
+import ProvinceService from "@/services/ProvinceService";
+
 export default {
   name: "carry-aus",
-  props: ["states", "carryAusThaiNext"],
+  props: ["carryAusThaiNext"],
+  data: function() {
+    return {
+      countries: null,
+      states: null,
+      provinces: null,
+      carryAusCountry: "Australia",
+      carryAusState: "",
+      carryAusSuburb: "",
+      carryAusCountryTo: "Thailand",
+      carryAusTo: ""
+    };
+  },
   methods: {
     showCarryAusThaiButton: function() {
-      var value1 = document.getElementById("carryAusState").value;
-      var value2 = document.getElementById("carryAusCity").value;
-      var value3 = document.getElementById("carryAusTo").value;
-      if (value1 == "" || value2 == "" || value3 == "") {
+      var value1 = this.carryAusCountry;
+      var value2 = this.carryAusState;
+      var value3 = this.carryAusSuburb;
+      var value4 = this.carryAusCountryTo;
+      var value5 = this.carryAusTo;
+
+      if (value1 == "Thailand") {
+        this.$router.push({
+          name: "CarryThai"
+        });
+      } else if (
+        value1 == "" ||
+        value2 == "" ||
+        value3 == "" ||
+        value4 == "" ||
+        value5 == ""
+      ) {
         this.$emit("showCarryAusThaiButton", false);
       } else {
         this.$emit("showCarryAusThaiButton", true);
       }
     }
+  },
+  async mounted() {
+    this.countries = (await CountryService.getAllCountries()).data;
+    this.states = (await StateService.getAllStates()).data;
+    this.provinces = (await ProvinceService.getAllProvinces()).data;
   }
 };
 </script>

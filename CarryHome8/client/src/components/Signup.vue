@@ -92,13 +92,15 @@ export default {
   methods: {
     async signup() {
       try {
-        await AuthenticationService.signup({
+        const responce = await AuthenticationService.signup({
           fname: this.fname,
           lname: this.lname,
           email: this.email,
           password: this.password,
           password2: this.password2
         });
+        this.$store.dispatch("setToken", responce.data.token);
+        this.$store.dispatch("setUser", responce.data.user);
       } catch (error) {
         this.error = error.response.data.error;
       }

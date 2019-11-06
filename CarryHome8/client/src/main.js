@@ -32,6 +32,8 @@ Vue.prototype.moment = moment;
 
 Vue.config.productionTip = false;
 
+export const bus = new Vue();
+
 new Vue({
   render: h => h(App),
   router,
