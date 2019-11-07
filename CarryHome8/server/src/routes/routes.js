@@ -6,16 +6,11 @@ const StatesController = require("./../controllers/StatesController");
 const ProvincesController = require("./../controllers/ProvincesController");
 
 module.exports = app => {
-  app.get("/status", (req, res) => {
-    res.send({ message: "hello world" });
-  });
-
   app.post(
     "/signup",
     AuthenticationControllerPolicy.signup,
     AuthenticationController.signup
   );
-
   app.post("/login", AuthenticationController.login);
 
   app.get("/posts", PostsController.getPosts);
@@ -23,6 +18,7 @@ module.exports = app => {
 
   app.get("/posts/:postsId", PostsController.getPostById);
   app.put("/posts/:postsId", PostsController.putPostById);
+  app.delete("/posts/:postsId", PostsController.deletePostById);
 
   app.get("/countries", CountriesController.getAllCountries);
   app.get("/states", StatesController.getAllStates);

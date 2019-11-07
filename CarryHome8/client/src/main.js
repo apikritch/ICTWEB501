@@ -23,11 +23,12 @@ import {
   faUserCircle,
   faPaperPlane,
   faPlus,
-  faPen
+  faPen,
+  faTrash
 } from "@fortawesome/free-solid-svg-icons";
 
 //add them to the library object
-library.add(faUserCircle, faPaperPlane, faPlus, faPen);
+library.add(faUserCircle, faPaperPlane, faPlus, faPen, faTrash);
 
 sync(store, router);
 

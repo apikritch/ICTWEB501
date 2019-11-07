@@ -434,7 +434,9 @@ export default {
         description: ""
       },
       fromcountry: "",
-      tocountry: ""
+      tocountry: "",
+      states: "",
+      provinces: ""
     };
   },
   mixins: [validationMixin],

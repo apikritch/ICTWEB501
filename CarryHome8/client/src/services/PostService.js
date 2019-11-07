@@ -15,7 +15,9 @@ export default {
     return Api().get(`posts/${postsId}`);
   },
   putPostById(postsId, posts) {
-    console.log("Test send to server");
     return Api().put(`posts/${postsId}`, posts);
+  },
+  deletePostById(postsId) {
+    return Api().delete(`posts/${postsId}`);
   }
 };

@@ -15,11 +15,10 @@ import CreatePostThai from "@/components/CreatePostThai.vue";
 import EditPost from "@/components/EditPost.vue";
 import Post from "@/components/Post/Post.vue";
 import ViewPost from "@/components/Post/PostDetail/ViewPost.vue";
-import ThankYou from "@/components/ThankYou.vue";
 import Profile from "@/components/Profile.vue";
 import Login from "@/components/Login.vue";
 import Signup from "@/components/Signup.vue";
-import ThankYouSignup from "@/components/ThankYouSignup.vue";
+import NotFound from "@/components/NotFound.vue";
 
 //Use Vue Router
 Vue.use(Router);
@@ -99,14 +98,8 @@ export default new Router({
       props: true
     },
     {
-      path: "/thankyou",
-      name: "ThankYou",
-      component: ThankYou,
-      props: true
-    },
-    {
       path: "/profile",
-      name: "Profile",
+      name: "profile",
       component: Profile,
       props: true
     },
@@ -122,11 +115,6 @@ export default new Router({
       component: Signup,
       props: true
     },
-    {
-      path: "/thank_you_for_signing_up",
-      name: "ThankYouSignup",
-      component: ThankYouSignup,
-      props: true
-    }
+    { path: "*", component: NotFound }
   ]
 });

@@ -88,5 +88,18 @@ module.exports = {
         error: "An error has occurred trying to get the instruction guide by id"
       });
     }
+  },
+  async deletePostById(req, res) {
+    try {
+      await Post.destroy({
+        where: { id: req.params.postsId }
+      });
+      res.send("success");
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({
+        error: "An error has occurred trying to delete the post by id"
+      });
+    }
   }
 };

@@ -13,11 +13,18 @@
       <!--Edit Button-->
       <div class="container" v-if="$store.state.isUserLoggedIn">
         <div class="row justify-content-end">
-          <router-link href="#" :to="'/post/' + post.Id + '/edit'">
+          <router-link href="#" :to="'/post/' + post.id + '/edit'">
             <button type="button" class="btn btn-orange px-3 py-2 create-but">
               <font-awesome-icon icon="pen"></font-awesome-icon>&nbsp;Edit Post
             </button>
           </router-link>
+          <button
+            @click="deletePost"
+            type="button"
+            class="btn btn-orange px-3 py-2 create-but ml-3"
+          >
+            <font-awesome-icon icon="trash"></font-awesome-icon>&nbsp;Delete Post
+          </button>
         </div>
       </div>
       <!--Create Button-->
@@ -205,8 +212,21 @@ export default {
   },
   data() {
     return {
-      post: null
+      post: ""
     };
+  },
+  methods: {
+    async deletePost() {
+      try {
+        const postId = this.$store.state.route.params.postId;
+        await PostService.deletePostById(postId);
+        this.$router.push({
+          name: "post"
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   },
   async mounted() {
     const postId = this.$store.state.route.params.postId;
