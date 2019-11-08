@@ -18,7 +18,7 @@
         <!--Login Image-->
         <div v-if="$store.state.isUserLoggedIn">
           <div class="row justify-content-sm-end mb-3">
-            <a href="#" class="login-section" @click="showDropdown()">
+            <a class="login-section" @click="showDropdown()">
               <font-awesome-icon icon="user-circle" class="text-white user-img-login login-section"></font-awesome-icon>
             </a>
           </div>

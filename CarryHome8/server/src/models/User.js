@@ -14,26 +14,19 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
-      fname: {
-        type: DataTypes.STRING
-      },
-      lname: {
-        type: DataTypes.STRING
-      },
-      email: {
-        type: DataTypes.STRING,
-        unique: true
-      },
-      password: {
-        type: DataTypes.STRING
-      }
+      fname: { type: DataTypes.STRING },
+      lname: { type: DataTypes.STRING },
+      email: { type: DataTypes.STRING, unique: true },
+      password: { type: DataTypes.STRING }
     },
     {
-      hooks: {
-        beforeSave: hashPassword
-      }
+      hooks: { beforeSave: hashPassword }
     }
   );
+  User.associate = function(models) {
+    User.hasMany(models.Post, { as: post });
+    User.hasOne(models.UserInfo, { as: userinfo });
+  };
 
   User.prototype.comparePassword = async function(password) {
     try {

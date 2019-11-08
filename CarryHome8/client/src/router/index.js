@@ -19,6 +19,7 @@ import Profile from "@/components/Profile.vue";
 import Login from "@/components/Login.vue";
 import Signup from "@/components/Signup.vue";
 import NotFound from "@/components/NotFound.vue";
+import CreateProfile from "@/components/CreateProfile.vue";
 
 //Use Vue Router
 Vue.use(Router);
@@ -115,6 +116,12 @@ export default new Router({
       component: Signup,
       props: true
     },
-    { path: "*", component: NotFound }
+    { path: "*", component: NotFound },
+    {
+      path: "/profile/create",
+      name: "createprofile",
+      component: CreateProfile,
+      props: true
+    }
   ]
 });

@@ -4,6 +4,7 @@ const PostsController = require("./../controllers/PostsController");
 const CountriesController = require("./../controllers/CountriesController");
 const StatesController = require("./../controllers/StatesController");
 const ProvincesController = require("./../controllers/ProvincesController");
+const UserInfoController = require("./../controllers/UserInfoController");
 
 module.exports = app => {
   app.post(
@@ -23,4 +24,6 @@ module.exports = app => {
   app.get("/countries", CountriesController.getAllCountries);
   app.get("/states", StatesController.getAllStates);
   app.get("/provinces", ProvincesController.getAllProvinces);
+
+  app.post("/users/:usersId", UserInfoController.postUserInfoById);
 };

@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
+const { UserInfo } = require("../models");
 
 function jwtSignUser(user) {
   const tokenExpiryTime = 60 * 60 * 24 * 7;
@@ -45,9 +46,20 @@ module.exports = {
         });
       }
 
+      const userInfo = await UserInfo.findOne({
+        where: { userId: user.id }
+      });
+      if (!userInfo) {
+        res.status(401).send({
+          error: "The login information was incorrect!"
+        });
+      }
+
       const userJSON = user.toJSON();
+      const userInfoJSON = userInfo.toJSON();
       res.send({
         user: userJSON,
+        userInfo: userInfoJSON,
         token: jwtSignUser(userJSON)
       });
     } catch (err) {

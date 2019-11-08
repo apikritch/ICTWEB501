@@ -18,6 +18,13 @@
         <div class="row justify-content-sm-center">
           <div class="col-sm-6 border-right border-secondary">
             <div class="container">
+              <div class="row justify-content-end">
+                <router-link href="#" to="/post/aus/create">
+                  <button type="button" class="btn btn-orange create-but">
+                    <font-awesome-icon icon="pen"></font-awesome-icon>
+                  </button>
+                </router-link>
+              </div>
               <div class="row">
                 <div class="col-sm-5 text-right information-left">
                   <p class="text-orange">
@@ -48,6 +55,22 @@
                   <p class="text-white">{{user.fname}} {{user.lname}}</p>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="container">
+              <div class="row justify-content-end">
+                <router-link href="#" to="/profile/create">
+                  <button type="button" class="btn btn-orange create-but">
+                    <font-awesome-icon icon="plus"></font-awesome-icon>
+                  </button>
+                </router-link>
+                <router-link href="#" to="/profile/edit">
+                  <button type="button" class="btn btn-orange create-but">
+                    <font-awesome-icon icon="pen"></font-awesome-icon>
+                  </button>
+                </router-link>
+              </div>
               <div class="row">
                 <div class="col-sm-5 text-right information-left">
                   <p class="text-orange">
@@ -55,7 +78,7 @@
                   </p>
                 </div>
                 <div class="col-sm-7 text-left information-right">
-                  <p class="text-white"></p>
+                  <p class="text-white">{{userInfo.phoneau}}</p>
                 </div>
               </div>
               <div class="row">
@@ -65,7 +88,7 @@
                   </p>
                 </div>
                 <div class="col-sm-7 text-left information-right">
-                  <p class="text-white"></p>
+                  <p class="text-white">{{userInfo.phoneth}}</p>
                 </div>
               </div>
               <div class="row">
@@ -75,31 +98,7 @@
                   </p>
                 </div>
                 <div class="col-sm-7 text-left information-right">
-                  <p class="text-white"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-5 text-right information-left">
-                  <p class="text-orange">
-                    <b>Address in Australia:</b>
-                  </p>
-                </div>
-                <div class="col-sm-7 text-left information-right">
-                  <p class="text-white"></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-5 text-right information-left">
-                  <p class="text-orange">
-                    <b>Address in Thailand:</b>
-                  </p>
-                </div>
-                <div class="col-sm-7 text-left information-right">
-                  <p class="text-white"></p>
+                  <p class="text-white">{{userInfo.social}}</p>
                 </div>
               </div>
             </div>
@@ -113,7 +112,8 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import AuthenticationService from "@/services/AuthenticationService";
+import UserInfoService from "@/services/UserInfoService";
+
 export default {
   name: "profile",
   components: {
@@ -121,11 +121,13 @@ export default {
   },
   data() {
     return {
-      user: ""
+      user: "",
+      userInfo: ""
     };
   },
   async mounted() {
     this.user = this.$store.state.user;
+    this.userInfo = this.$store.state.userInfo;
   }
 };
 </script>
