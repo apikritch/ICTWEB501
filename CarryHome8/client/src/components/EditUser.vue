@@ -20,31 +20,46 @@
             <div class="row mb-2">
               <div class="col-sm-5 text-right information-left pr-3">
                 <p class="text-orange">
-                  <b>Phone (AU):</b>
+                  <b>Email:</b>
                 </p>
               </div>
               <div class="col-sm-7 text-left information-right">
-                <input type="text" class="form-control block w-50" v-model="userinfo.phoneau" />
+                <input type="text" class="form-control block w-50" v-model="user.email" />
               </div>
             </div>
             <div class="row mb-2">
               <div class="col-sm-5 text-right information-left pr-3">
                 <p class="text-orange">
-                  <b>Phone (TH):</b>
+                  <b>Password:</b>
                 </p>
               </div>
               <div class="col-sm-7 text-left information-right">
-                <input type="text" class="form-control block w-50" v-model="userinfo.phoneth" />
+                <input
+                  disabled
+                  type="text"
+                  class="form-control block w-50"
+                  placeholder="**********"
+                />
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-5 text-right information-left pr-3">
+                <p class="text-orange">
+                  <b>First Name:</b>
+                </p>
+              </div>
+              <div class="col-sm-7 text-left information-right">
+                <input type="text" class="form-control block w-50" v-model="user.fname" />
               </div>
             </div>
             <div class="row">
               <div class="col-sm-5 text-right information-left pr-3">
                 <p class="text-orange">
-                  <b>Social Media:</b>
+                  <b>Last Name:</b>
                 </p>
               </div>
               <div class="col-sm-7 text-left information-right">
-                <input type="text" class="form-control block w-50" v-model="userinfo.social" />
+                <input type="text" class="form-control block w-50" v-model="user.lname" />
               </div>
             </div>
           </div>
@@ -52,6 +67,10 @@
       </div>
       <!--Information-->
       <div class="row justify-content-center">
+        <router-link href="#" to="/user/password/edit" class="mr-3">
+          <button type="button" class="btn btn-orange px-2 py-2">Change Password</button>
+        </router-link>
+
         <button @click="save" class="btn btn-orange px-5 py-2">Save</button>
       </div>
     </div>
@@ -85,7 +104,7 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import UserInfoService from "@/services/UserInfoService";
+import AuthenticationService from "@/services/AuthenticationService";
 
 export default {
   name: "CreateProfile",
@@ -94,10 +113,10 @@ export default {
   },
   data() {
     return {
-      userinfo: {
-        phoneau: "",
-        phoneth: "",
-        social: ""
+      user: {
+        fname: "",
+        lname: "",
+        email: ""
       }
     };
   },
@@ -105,9 +124,9 @@ export default {
     async save() {
       // Posts data
       try {
-        await UserInfoService.putUserInfoById(
+        await AuthenticationService.putUserById(
           this.$store.state.user.id,
-          this.userinfo
+          this.user
         );
         this.$router.push({
           name: "Profile"
@@ -119,7 +138,7 @@ export default {
   },
   async mounted() {
     const userId = this.$store.state.user.id;
-    this.userinfo = (await UserInfoService.getUserInfoById(userId)).data;
+    this.user = (await AuthenticationService.getUserById(userId)).data;
   }
 };
 </script>

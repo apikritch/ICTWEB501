@@ -15,15 +15,22 @@ module.exports = app => {
   app.post("/login", AuthenticationController.login);
 
   app.get("/posts", PostsController.getPosts);
-  app.post("/posts", PostsController.postPosts);
-
   app.get("/posts/:postsId", PostsController.getPostById);
+  app.post("/posts/:usersId", PostsController.postPosts);
   app.put("/posts/:postsId", PostsController.putPostById);
   app.delete("/posts/:postsId", PostsController.deletePostById);
+
+  app.get("/users/:usersId", UserInfoController.getUserInfoById);
+  app.post("/users/:usersId", UserInfoController.postUserInfoById);
+  app.put("/users/:usersId", UserInfoController.putUserInfoById);
+
+  app.get("/user/:usersId", AuthenticationController.getUserById);
+  app.put("/user/:usersId", AuthenticationController.putUserById);
+  app.put("/user/password/:usersId", AuthenticationController.putPasswordById);
 
   app.get("/countries", CountriesController.getAllCountries);
   app.get("/states", StatesController.getAllStates);
   app.get("/provinces", ProvincesController.getAllProvinces);
 
-  app.post("/users/:usersId", UserInfoController.postUserInfoById);
+  app.get("/myposts/:usersId", PostsController.getMyPosts);
 };

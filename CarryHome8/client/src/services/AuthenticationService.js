@@ -6,5 +6,14 @@ export default {
   },
   login(credentials) {
     return Api().post("login", credentials);
+  },
+  getUserById(usersId) {
+    return Api().get(`user/${usersId}`);
+  },
+  putUserById(usersId, profile) {
+    return Api().put(`user/${usersId}`, profile);
+  },
+  putPasswordById(usersId, credentials) {
+    return Api().put(`user/password/${usersId}`, credentials);
   }
 };

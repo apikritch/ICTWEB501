@@ -20,6 +20,10 @@ import Login from "@/components/Login.vue";
 import Signup from "@/components/Signup.vue";
 import NotFound from "@/components/NotFound.vue";
 import CreateProfile from "@/components/CreateProfile.vue";
+import EditProfile from "@/components/EditProfile.vue";
+import EditUser from "@/components/EditUser.vue";
+import EditPassword from "@/components/EditPassword.vue";
+import MyPost from "@/components/MyPost.vue";
 
 //Use Vue Router
 Vue.use(Router);
@@ -100,7 +104,7 @@ export default new Router({
     },
     {
       path: "/profile",
-      name: "profile",
+      name: "Profile",
       component: Profile,
       props: true
     },
@@ -119,8 +123,32 @@ export default new Router({
     { path: "*", component: NotFound },
     {
       path: "/profile/create",
-      name: "createprofile",
+      name: "CreateProfile",
       component: CreateProfile,
+      props: true
+    },
+    {
+      path: "/profile/edit",
+      name: "EditProfile",
+      component: EditProfile,
+      props: true
+    },
+    {
+      path: "/user/edit",
+      name: "EditUser",
+      component: EditUser,
+      props: true
+    },
+    {
+      path: "/user/password/edit",
+      name: "EditPassword",
+      component: EditPassword,
+      props: true
+    },
+    {
+      path: "/mypost",
+      name: "MyPost",
+      component: MyPost,
       props: true
     }
   ]

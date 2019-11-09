@@ -8,8 +8,8 @@ export default {
       }
     });
   },
-  postPosts(posts) {
-    return Api().post("posts", posts);
+  postPosts(usersId, posts) {
+    return Api().post(`posts/${usersId}`, posts);
   },
   getPostById(postsId) {
     return Api().get(`posts/${postsId}`);
@@ -19,5 +19,8 @@ export default {
   },
   deletePostById(postsId) {
     return Api().delete(`posts/${postsId}`);
+  },
+  getMyPosts(usersId) {
+    return Api().get(`myposts/${usersId}`);
   }
 };

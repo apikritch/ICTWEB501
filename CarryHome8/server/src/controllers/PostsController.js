@@ -54,7 +54,22 @@ module.exports = {
   },
   async postPosts(req, res) {
     try {
-      const post = await Post.create(req.body);
+      const post = await Post.create({
+        depart: req.body.depart,
+        address1au: req.body.address1au,
+        address2au: req.body.address2au,
+        suburb: req.body.suburb,
+        state: req.body.state,
+        postcodeau: req.body.postcodeau,
+        addressth: req.body.addressth,
+        province: req.body.province,
+        postcodeth: req.body.postcodeth,
+        pickup: req.body.pickup,
+        price: req.body.price,
+        postopt: req.body.postopt,
+        description: req.body.description,
+        userId: req.params.usersId
+      });
       res.send(post);
     } catch (err) {
       console.log(err);
@@ -99,6 +114,19 @@ module.exports = {
       console.log(err);
       res.status(500).send({
         error: "An error has occurred trying to delete the post by id"
+      });
+    }
+  },
+  async getMyPosts(req, res) {
+    try {
+      const posts = await Post.findAll({
+        where: { userId: req.params.usersId }
+      });
+      res.send(posts);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({
+        error: "An error has occurred trying to get my post"
       });
     }
   }

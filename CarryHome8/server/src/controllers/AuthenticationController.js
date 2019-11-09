@@ -1,7 +1,6 @@
 const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
-const { UserInfo } = require("../models");
 
 function jwtSignUser(user) {
   const tokenExpiryTime = 60 * 60 * 24 * 7;
@@ -46,25 +45,51 @@ module.exports = {
         });
       }
 
-      const userInfo = await UserInfo.findOne({
-        where: { userId: user.id }
-      });
-      if (!userInfo) {
-        res.status(401).send({
-          error: "The login information was incorrect!"
-        });
-      }
-
       const userJSON = user.toJSON();
-      const userInfoJSON = userInfo.toJSON();
       res.send({
         user: userJSON,
-        userInfo: userInfoJSON,
         token: jwtSignUser(userJSON)
       });
     } catch (err) {
       res.status(500).send({
         error: "An error occoured while trying to login"
+      });
+    }
+  },
+  async getUserById(req, res) {
+    try {
+      const user = await User.findOne({
+        where: { id: req.params.usersId }
+      });
+      res.send(user);
+    } catch (err) {
+      res.status(500).send({
+        error: "An error has occurred trying to get a user"
+      });
+    }
+  },
+  async putUserById(req, res) {
+    try {
+      const user = await User.update(req.body, {
+        where: { id: req.params.usersId }
+      });
+      res.send(user);
+    } catch (err) {
+      res.status(500).send({
+        error: "An error has occurred trying to update a user"
+      });
+    }
+  },
+  async putPasswordById(req, res) {
+    try {
+      const user = await User.update(req.body, {
+        where: { id: req.params.usersId }
+      });
+
+      res.send(user);
+    } catch (err) {
+      res.status(500).send({
+        error: "An error has occurred trying to update a user"
       });
     }
   }

@@ -1,6 +1,6 @@
 <template>
-  <div v-if="$store.state.isUserLoggedIn">
-    <div class="mx-5 px-5">
+  <div>
+    <div class="mx-5 px-5" v-if="$store.state.isUserLoggedIn">
       <div class="row justify-content-sm-start">
         <h3 class="content-text text-orange ml-3">Profile</h3>
       </div>
@@ -19,7 +19,7 @@
           <div class="col-sm-6 border-right border-secondary">
             <div class="container">
               <div class="row justify-content-end">
-                <router-link href="#" to="/post/aus/create">
+                <router-link href="#" to="/user/edit">
                   <button type="button" class="btn btn-orange create-but">
                     <font-awesome-icon icon="pen"></font-awesome-icon>
                   </button>
@@ -61,12 +61,12 @@
             <div class="container">
               <div class="row justify-content-end">
                 <router-link href="#" to="/profile/create">
-                  <button type="button" class="btn btn-orange create-but">
+                  <button type="button" class="btn btn-orange create-but" v-if="!userInfo">
                     <font-awesome-icon icon="plus"></font-awesome-icon>
                   </button>
                 </router-link>
                 <router-link href="#" to="/profile/edit">
-                  <button type="button" class="btn btn-orange create-but">
+                  <button type="button" class="btn btn-orange create-but" v-if="userInfo">
                     <font-awesome-icon icon="pen"></font-awesome-icon>
                   </button>
                 </router-link>
@@ -107,27 +107,56 @@
       </div>
       <!--Information-->
     </div>
+    <!--Login Section-->
+    <div v-if="!$store.state.isUserLoggedIn" class="row justify-content-sm-center mt-5">
+      <div class="w-75 mt-5">
+        <div class="card popup-background">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12 text-center content-text text-white">
+                <h1 class="mt-4 mb-4">
+                  <b>REQUIRE</b>
+                </h1>
+
+                <h1 class="mt-4 mb-4">LOGIN TO ACCESS THIS PAGE</h1>
+              </div>
+            </div>
+            <hr class="bg-light mb-3 w-50" />
+            <div class="row justify-content-sm-center mb-4">
+              <router-link href="#" to="/login">
+                <button type="button" class="btn btn-dark px-5 py-2 mt-4">Login</button>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Login Section-->
   </div>
 </template>
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import UserInfoService from "@/services/UserInfoService";
+import AuthenticationService from "@/services/AuthenticationService";
 
 export default {
-  name: "profile",
+  name: "Profile",
   components: {
     FontAwesomeIcon
   },
   data() {
     return {
       user: "",
-      userInfo: ""
+      userInfo: "",
+      createBut: true,
+      editBut: false
     };
   },
   async mounted() {
-    this.user = this.$store.state.user;
-    this.userInfo = this.$store.state.userInfo;
+    const userId = this.$store.state.user.id;
+    this.user = (await AuthenticationService.getUserById(userId)).data;
+    this.userInfo = (await UserInfoService.getUserInfoById(userId)).data;
   }
 };
 </script>

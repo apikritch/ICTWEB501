@@ -11,7 +11,7 @@
       <hr class="bg-light mb-5" />
 
       <!--Edit Button-->
-      <div class="container" v-if="$store.state.isUserLoggedIn">
+      <div class="container" v-if="show">
         <div class="row justify-content-end">
           <router-link href="#" :to="'/post/' + post.id + '/edit'">
             <button type="button" class="btn btn-orange px-3 py-2 create-but">
@@ -35,7 +35,7 @@
           <div class="w-100">
             <div class="card">
               <div class="card-body">
-                <div class="container" v-if="post">
+                <div class="container">
                   <!--User Image-->
                   <div class="row justify-content-sm-center">
                     <font-awesome-icon icon="user-circle" class="user-img-detail"></font-awesome-icon>
@@ -56,7 +56,7 @@
                               </h6>
                             </div>
                             <div class="col-sm-7 text-left information-right">
-                              <h6>{{post.fname}} {{post.lname}}</h6>
+                              <h6>{{user.fname}} {{user.lname}}</h6>
                             </div>
                           </div>
                           <div class="row">
@@ -66,7 +66,7 @@
                               </h6>
                             </div>
                             <div class="col-sm-7 text-left information-right">
-                              <h6>{{post.email}}</h6>
+                              <h6>{{user.email}}</h6>
                             </div>
                           </div>
                           <div class="row">
@@ -76,7 +76,7 @@
                               </h6>
                             </div>
                             <div class="col-sm-7 text-left information-right">
-                              <h6>{{post.phoneau}}</h6>
+                              <h6>{{userInfo.phoneau}}</h6>
                             </div>
                           </div>
                           <div class="row">
@@ -86,7 +86,7 @@
                               </h6>
                             </div>
                             <div class="col-sm-7 text-left information-right">
-                              <h6>{{post.phoneth}}</h6>
+                              <h6>{{userInfo.phoneth}}</h6>
                             </div>
                           </div>
                           <div class="row">
@@ -96,7 +96,7 @@
                               </h6>
                             </div>
                             <div class="col-sm-7 text-left information-right">
-                              <h6>{{post.social}}</h6>
+                              <h6>{{userInfo.social}}</h6>
                             </div>
                           </div>
                           <div class="row">
@@ -205,6 +205,9 @@
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import PostService from "@/services/PostService";
+import AuthenticationService from "@/services/AuthenticationService";
+import UserInfoService from "@/services/UserInfoService";
+
 export default {
   name: "ViewPost",
   components: {
@@ -212,7 +215,10 @@ export default {
   },
   data() {
     return {
-      post: ""
+      post: "",
+      user: "",
+      userInfo: "",
+      show: false
     };
   },
   methods: {
@@ -231,6 +237,16 @@ export default {
   async mounted() {
     const postId = this.$store.state.route.params.postId;
     this.post = (await PostService.getPostById(postId)).data;
+
+    const userId = this.post.userId;
+    this.userInfo = (await UserInfoService.getUserInfoById(userId)).data;
+    this.user = (await AuthenticationService.getUserById(userId)).data;
+
+    if (this.$store.state.user.id == this.post.userId) {
+      this.show = true;
+    } else {
+      this.show = false;
+    }
   }
 };
 </script>

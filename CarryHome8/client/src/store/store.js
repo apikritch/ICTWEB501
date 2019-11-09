@@ -10,8 +10,7 @@ export default new Vuex.Store({
     // These are basically the global states for the application thing we want to access everywhere
     token: null,
     user: null,
-    isUserLoggedIn: false,
-    userInfo: null
+    isUserLoggedIn: false
   },
   // Mutation in vuex allow us to modify the state these mutations can be tracked using the Vue debug tools
   // Mutation can not be called directly you must call a action that calls a mutation
@@ -26,9 +25,6 @@ export default new Vuex.Store({
     },
     setUser(state, user) {
       state.user = user;
-    },
-    setUserInfo(state, userInfo) {
-      state.userInfo = userInfo;
     }
   },
   // Actions are Vuex version of methods
@@ -40,9 +36,6 @@ export default new Vuex.Store({
     },
     setUser({ commit }, user) {
       commit("setUser", user);
-    },
-    setUserInfo({ commit }, userInfo) {
-      commit("setUserInfo", userInfo);
     }
   }
 });

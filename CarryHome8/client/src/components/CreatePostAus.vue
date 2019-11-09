@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mx-5 px-5" v-if="$store.state.isUserLoggedIn">
+    <div class="mx-5 px-5">
       <div class="row justify-content-sm-start">
         <h3 class="content-text text-orange ml-3">Carry</h3>
       </div>
@@ -92,6 +92,8 @@
       </div>
       <!--To-->
 
+      <hr class="bg-light mb-5" />
+
       <!--Depart-->
       <div class="row justify-content-sm-start align-items-end mb-3">
         <div class="col-sm-4">
@@ -125,11 +127,12 @@
           <label for="add-firstname" class="text-orange d-block">First Name</label>
 
           <b-form-input
+            disabled
             required
             type="text"
             id="add-firstname"
-            v-model="$v.post.fname.$model"
-            :state="$v.post.fname.$dirty ? !$v.post.fname.$error : null"
+            v-model="$v.user.fname.$model"
+            :state="$v.user.fname.$dirty ? !$v.user.fname.$error : null"
             aria-describedby="fname-feedback"
           />
 
@@ -142,11 +145,12 @@
         <div class="col-sm-6">
           <label for="add-lastname" class="text-orange d-block">Last Name</label>
           <b-form-input
+            disabled
             required
             type="text"
             id="add-lastname"
-            v-model="$v.post.lname.$model"
-            :state="$v.post.lname.$dirty ? !$v.post.lname.$error : null"
+            v-model="$v.user.lname.$model"
+            :state="$v.user.lname.$dirty ? !$v.user.lname.$error : null"
             aria-describedby="lname-feedback"
           />
           <b-form-invalid-feedback
@@ -162,11 +166,12 @@
         <div class="col-sm-4">
           <label for="add-email" class="text-orange d-block">Email</label>
           <b-form-input
+            disabled
             required
             type="email"
             id="add-email"
-            v-model="$v.post.email.$model"
-            :state="$v.post.email.$dirty ? !$v.post.email.$error : null"
+            v-model="$v.user.email.$model"
+            :state="$v.user.email.$dirty ? !$v.user.email.$error : null"
             aria-describedby="email-feedback"
           />
           <b-form-invalid-feedback
@@ -182,10 +187,12 @@
                 <option value selected>Line</option>
               </select>
               <input
+                disabled
                 type="text"
                 class="social-input form-control"
                 id="add-social-media-text"
                 placeholder="Optional"
+                v-model="userInfo.social"
               />
             </div>
           </div>
@@ -196,44 +203,46 @@
       <!--Infomation Row 3-->
       <div class="row justify-content-sm-start align-items-end mb-3">
         <div class="col-sm-4">
-          <label for="add-thai-phone" class="text-orange d-block">Phone (Thailand)</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text social-drop">TH</span>
-            </div>
-            <b-form-input
-              required
-              type="text"
-              class="social-input form-control"
-              id="add-aus-phone"
-              v-model="$v.post.phoneth.$model"
-              :state="$v.post.phoneth.$dirty ? !$v.post.phoneth.$error : null"
-              aria-describedby="phoneth-feedback"
-            />
-            <b-form-invalid-feedback
-              class="text-white bg-danger rounded p-1"
-              id="phoneth-feedback"
-            >This is a required field and must be at least 3 characters.</b-form-invalid-feedback>
-          </div>
-        </div>
-        <div class="col-sm-4">
           <label for="add-aus-phone" class="text-orange d-block">Phone (Australia)</label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text social-drop">AU</span>
             </div>
             <b-form-input
+              disabled
               required
               type="text"
               class="social-input form-control"
               id="add-aus-phone"
-              v-model="$v.post.phoneau.$model"
-              :state="$v.post.phoneau.$dirty ? !$v.post.phoneau.$error : null"
+              v-model="$v.userInfo.phoneau.$model"
+              :state="$v.userInfo.phoneau.$dirty ? !$v.userInfo.phoneau.$error : null"
               aria-describedby="phoneau-feedback"
             />
             <b-form-invalid-feedback
               class="text-white bg-danger rounded p-1"
               id="phoneau-feedback"
+            >This is a required field and must be at least 3 characters.</b-form-invalid-feedback>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <label for="add-thai-phone" class="text-orange d-block">Phone (Thailand)</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text social-drop">TH</span>
+            </div>
+            <b-form-input
+              disabled
+              required
+              type="text"
+              class="social-input form-control"
+              id="add-aus-phone"
+              v-model="$v.userInfo.phoneth.$model"
+              :state="$v.userInfo.phoneth.$dirty ? !$v.userInfo.phoneth.$error : null"
+              aria-describedby="phoneth-feedback"
+            />
+            <b-form-invalid-feedback
+              class="text-white bg-danger rounded p-1"
+              id="phoneth-feedback"
             >This is a required field and must be at least 3 characters.</b-form-invalid-feedback>
           </div>
         </div>
@@ -403,7 +412,7 @@
       </h4>
       <div class="row justify-content-sm-start align-items-end mb-3">
         <div class="col-sm-5">
-          <input type="text" class="form-control" id="add-pickup" />
+          <input type="text" class="form-control" id="add-pickup" v-model="post.pickup" />
         </div>
       </div>
       <!--Pickup Location-->
@@ -454,7 +463,7 @@
       </h4>
       <div class="row justify-content-sm-start align-items-end mb-1">
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="add-postage" />
+          <input type="text" class="form-control" id="add-postage" v-model="post.postopt" />
         </div>
       </div>
       <div class="text-orange">
@@ -473,7 +482,7 @@
       </h4>
       <div class="row justify-content-sm-start align-items-end mb-3">
         <div class="col-sm-12">
-          <textarea class="form-control" id="add-description" rows="3"></textarea>
+          <textarea class="form-control" id="add-description" rows="3" v-model="post.description"></textarea>
         </div>
       </div>
       <!--Description-->
@@ -517,6 +526,8 @@ import CountryService from "@/services/CountryService";
 import StateService from "@/services/StateService";
 import ProvinceService from "@/services/ProvinceService";
 
+import AuthenticationService from "@/services/AuthenticationService";
+import UserInfoService from "@/services/UserInfoService";
 import PostService from "@/services/PostService";
 import { validationMixin } from "vuelidate";
 import { required, minLength } from "vuelidate/lib/validators";
@@ -528,14 +539,18 @@ export default {
       countries: null,
       states: null,
       provinces: null,
-      post: {
-        depart: "",
+      user: {
         fname: "",
         lname: "",
-        email: "",
-        social: "",
-        phoneth: "",
+        email: ""
+      },
+      userInfo: {
         phoneau: "",
+        phoneth: "",
+        social: ""
+      },
+      post: {
+        depart: "",
         address1au: "",
         address2au: "",
         suburb: "",
@@ -573,10 +588,7 @@ export default {
   },
   mixins: [validationMixin],
   validations: {
-    post: {
-      depart: {
-        required
-      },
+    user: {
       fname: {
         required,
         minLength: minLength(3)
@@ -588,14 +600,21 @@ export default {
       email: {
         required,
         minLength: minLength(3)
+      }
+    },
+    userInfo: {
+      phoneau: {
+        required,
+        minLength: minLength(3)
       },
       phoneth: {
         required,
         minLength: minLength(3)
-      },
-      phoneau: {
-        required,
-        minLength: minLength(3)
+      }
+    },
+    post: {
+      depart: {
+        required
       },
       address1au: {
         required,
@@ -640,7 +659,7 @@ export default {
       }
       // Posts data
       try {
-        await PostService.postPosts(this.post);
+        await PostService.postPosts(this.$store.state.user.id, this.post);
         this.$router.push({
           name: "post"
         });
@@ -660,6 +679,10 @@ export default {
     this.countries = (await CountryService.getAllCountries()).data;
     this.states = (await StateService.getAllStates()).data;
     this.provinces = (await ProvinceService.getAllProvinces()).data;
+
+    this.user = this.$store.state.user;
+    const userId = this.user.id;
+    this.userInfo = (await UserInfoService.getUserInfoById(userId)).data;
   }
 };
 </script>

@@ -20,31 +20,11 @@
             <div class="row mb-2">
               <div class="col-sm-5 text-right information-left pr-3">
                 <p class="text-orange">
-                  <b>Phone (AU):</b>
+                  <b>Password:</b>
                 </p>
               </div>
               <div class="col-sm-7 text-left information-right">
-                <input type="text" class="form-control block w-50" v-model="userinfo.phoneau" />
-              </div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-sm-5 text-right information-left pr-3">
-                <p class="text-orange">
-                  <b>Phone (TH):</b>
-                </p>
-              </div>
-              <div class="col-sm-7 text-left information-right">
-                <input type="text" class="form-control block w-50" v-model="userinfo.phoneth" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-5 text-right information-left pr-3">
-                <p class="text-orange">
-                  <b>Social Media:</b>
-                </p>
-              </div>
-              <div class="col-sm-7 text-left information-right">
-                <input type="text" class="form-control block w-50" v-model="userinfo.social" />
+                <input type="text" class="form-control block w-50" v-model="user.password" />
               </div>
             </div>
           </div>
@@ -85,41 +65,35 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import UserInfoService from "@/services/UserInfoService";
+import AuthenticationService from "@/services/AuthenticationService";
 
 export default {
-  name: "CreateProfile",
+  name: "EditPassword",
   components: {
     FontAwesomeIcon
   },
   data() {
     return {
-      userinfo: {
-        phoneau: "",
-        phoneth: "",
-        social: ""
+      user: {
+        password: ""
       }
     };
   },
   methods: {
     async save() {
-      // Posts data
       try {
-        await UserInfoService.putUserInfoById(
+        await AuthenticationService.putPasswordById(
           this.$store.state.user.id,
-          this.userinfo
+          this.user
         );
+
         this.$router.push({
-          name: "Profile"
+          name: "EditUser"
         });
       } catch (error) {
         console.log(error);
       }
     }
-  },
-  async mounted() {
-    const userId = this.$store.state.user.id;
-    this.userinfo = (await UserInfoService.getUserInfoById(userId)).data;
   }
 };
 </script>

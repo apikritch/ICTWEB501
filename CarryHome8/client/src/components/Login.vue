@@ -91,7 +91,6 @@ export default {
 
         this.$store.dispatch("setToken", responce.data.token);
         this.$store.dispatch("setUser", responce.data.user);
-        this.$store.dispatch("setUserInfo", responce.data.userInfo);
 
         this.$router.go(-1);
       } catch (error) {

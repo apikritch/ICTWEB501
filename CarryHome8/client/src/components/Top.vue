@@ -30,17 +30,19 @@
           <div class="row justify-content-sm-end login-section" :class="dropdownBoxState">
             <div class="card popup-background login-section">
               <div class="card-body">
-                <p class="text-center text-white">Apikritch Rattanapisankul</p>
-                <p class="text-center">apikritch.r@gmail.com</p>
+                <p class="text-center text-white">{{fname}} {{lname}}</p>
+                <p class="text-center">{{email}}</p>
                 <hr class="bg-light" />
                 <router-link href="#" to="/profile" class="text-link-dark">
                   <p>Your Profile</p>
                 </router-link>
-                <p>Your Post</p>
+                <router-link href="#" to="/mypost" class="text-link-dark">
+                  <p>Your Post</p>
+                </router-link>
                 <p>Your Help</p>
                 <p>Your Setting</p>
                 <hr class="bg-light" />
-                <a href="#" class="text-link-dark" @click="logout">
+                <a class="text-link-dark" @click="logout">
                   <p class="text-center">Log Out</p>
                 </a>
               </div>
@@ -79,6 +81,7 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import AuthenticationService from "@/services/AuthenticationService";
 
 export default {
   name: "top",
@@ -87,7 +90,10 @@ export default {
   },
   data: function() {
     return {
-      dropdownBox: false
+      dropdownBox: false,
+      fname: null,
+      lname: null,
+      email: null
     };
   },
   methods: {
@@ -101,6 +107,10 @@ export default {
       return this.dropdownBox ? "d-flex" : "d-none";
     },
     showDropdown: function() {
+      this.fname = this.$store.state.user.fname;
+      this.lname = this.$store.state.user.lname;
+      this.email = this.$store.state.user.email;
+
       return (this.dropdownBox = !this.dropdownBox);
     }
   }
