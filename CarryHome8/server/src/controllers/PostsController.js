@@ -15,12 +15,6 @@ module.exports = {
           where: {
             [Op.or]: [
               { depart: { [Op.like]: `%${search}%` } },
-              { fname: { [Op.like]: `%${search}%` } },
-              { lname: { [Op.like]: `%${search}%` } },
-              { email: { [Op.like]: `%${search}%` } },
-              { social: { [Op.like]: `%${search}%` } },
-              { phoneth: { [Op.like]: `%${search}%` } },
-              { phoneau: { [Op.like]: `%${search}%` } },
               { address1au: { [Op.like]: `%${search}%` } },
               { address2au: { [Op.like]: `%${search}%` } },
               { suburb: { [Op.like]: `%${search}%` } },
