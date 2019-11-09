@@ -18,11 +18,11 @@
         <div class="row justify-content-sm-center">
           <div class="col-sm-6 border-right border-secondary">
             <div class="container">
-              <div class="row justify-content-end">
+              <div class="row justify-content-end mb-4">
                 <router-link href="#" to="/user/edit">
-                  <button type="button" class="btn btn-orange create-but">
-                    <font-awesome-icon icon="pen"></font-awesome-icon>
-                  </button>
+                  <h5>
+                    <font-awesome-icon class="text-link" icon="pen"></font-awesome-icon>
+                  </h5>
                 </router-link>
               </div>
               <div class="row">
@@ -59,16 +59,16 @@
           </div>
           <div class="col-sm-6">
             <div class="container">
-              <div class="row justify-content-end">
+              <div class="row justify-content-end mb-4">
                 <router-link href="#" to="/profile/create">
-                  <button type="button" class="btn btn-orange create-but" v-if="!userInfo">
-                    <font-awesome-icon icon="plus"></font-awesome-icon>
-                  </button>
+                  <h5 v-if="!userInfo">
+                    <font-awesome-icon class="text-link" icon="plus"></font-awesome-icon>
+                  </h5>
                 </router-link>
                 <router-link href="#" to="/profile/edit">
-                  <button type="button" class="btn btn-orange create-but" v-if="userInfo">
-                    <font-awesome-icon icon="pen"></font-awesome-icon>
-                  </button>
+                  <h5 v-if="userInfo">
+                    <font-awesome-icon class="text-link" icon="pen"></font-awesome-icon>
+                  </h5>
                 </router-link>
               </div>
               <div class="row">

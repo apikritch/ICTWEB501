@@ -18,7 +18,7 @@
         <!--Login Image-->
         <div v-if="$store.state.isUserLoggedIn">
           <div class="row justify-content-sm-end mb-3">
-            <a class="login-section" @click="showDropdown()">
+            <a class="login-section pointer" @click="showDropdown()">
               <font-awesome-icon icon="user-circle" class="text-white user-img-login login-section"></font-awesome-icon>
             </a>
           </div>
@@ -43,7 +43,7 @@
                 <p>Your Setting</p>
                 <hr class="bg-light" />
                 <a class="text-link-dark" @click="logout">
-                  <p class="text-center">Log Out</p>
+                  <p class="text-center pointer">Log Out</p>
                 </a>
               </div>
             </div>
